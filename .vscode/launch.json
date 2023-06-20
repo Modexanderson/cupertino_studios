@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Flutter on Chrome",
+            "request": "attach",
+            "deviceId": "chrome",
+            "type": "dart",
+            "args": [
+              "--web-renderer",
+              "html"
+            ]
+          },
+        {
+            "name": "cupertino_studios",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "cupertino_studios (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "cupertino_studios (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+
+}
