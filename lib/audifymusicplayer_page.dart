@@ -11,6 +11,9 @@ class AudifyMusicPlayerPage extends StatelessWidget {
       appLogo: 'images/audify.png',
       shortDescription: 'The high quality\n     Music Player',
       appImage: 'images/audify-songs.png',
+      appName: 'Audify Music Player',
+      appDownloadUrl:
+          'https://drive.google.com/file/d/1isry2Pj6mfqc6CzfkppjiZXekCgKKsFy/view?usp=sharing',
       playStoreUrl:
           "https://play.google.com/store/apps/details?id=com.music.audify",
       appStoreUrl: "https://www.apple.com/app-store/",

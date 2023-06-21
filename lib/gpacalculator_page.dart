@@ -11,6 +11,9 @@ class GPACalculatorPage extends StatelessWidget {
       appLogo: 'images/gpa-calculator.png',
       shortDescription: 'The high quality\nGrade Calculator',
       appImage: 'images/gpacalculator-grades.png',
+      appName: 'GPA Calculator',
+      appDownloadUrl:
+          'https://drive.google.com/file/d/1isry2Pj6mfqc6CzfkppjiZXekCgKKsFy/view?usp=sharing',
       playStoreUrl:
           "https://play.google.com/store/apps/details?id=com.anderson.gpa_calculator",
       appStoreUrl: "https://www.apple.com/app-store/",

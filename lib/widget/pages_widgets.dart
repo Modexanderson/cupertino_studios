@@ -6,6 +6,8 @@ class PagesWidget extends StatefulWidget {
   final String title;
   final String appLogo;
   final String appImage;
+  final String appName;
+  final String appDownloadUrl;
   final IconData highlightsIcon1;
   final IconData highlightsIcon2;
   final IconData highlightsIcon3;
@@ -19,12 +21,14 @@ class PagesWidget extends StatefulWidget {
   final String privacyPolicyUrl;
   final String shortDescription;
   final String playStoreUrl;
-  final String appStoreUrl;
+  final String? appStoreUrl;
   final String featureImage;
   const PagesWidget({
     required this.title,
     required this.appLogo,
     required this.appImage,
+    required this.appName,
+    required this.appDownloadUrl,
     required this.highlightsIcon1,
     required this.highlightsIcon2,
     required this.highlightsIcon3,
@@ -38,7 +42,7 @@ class PagesWidget extends StatefulWidget {
     required this.privacyPolicyUrl,
     required this.shortDescription,
     required this.playStoreUrl,
-    required this.appStoreUrl,
+    this.appStoreUrl,
     required this.featureImage,
     super.key,
   });
@@ -262,7 +266,18 @@ class _PagesWidgetState extends State<PagesWidget>
                           ),
                           const SizedBox(width: 16),
                           CupertinoButton(
-                            onPressed: () => _launchURL(widget.appStoreUrl),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/iosinstallation',
+                                arguments: {
+                                  'appName': widget.appName,
+                                  'appIcon': widget.appLogo,
+                                  'appDownloadUrl': widget.appDownloadUrl,
+                                },
+                              );
+                            },
+                            // onPressed: () => _launchURL(widget.appStoreUrl),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.asset(

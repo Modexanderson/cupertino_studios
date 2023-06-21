@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'audify_page.dart';
 import 'gpacalculator_page.dart';
+import 'ipainstallation_page.dart';
 
 void main() {
   runApp(const CupertinoStudiosWebsite());
@@ -18,11 +19,31 @@ class CupertinoStudiosWebsite extends StatelessWidget {
     return MaterialApp(
       title: 'Cupertino Studios',
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) {
+        if (settings.name == '/iosinstallation') {
+          // Extract the route parameters if any
+          final arguments = settings.arguments as Map<String, dynamic>?;
+
+          return MaterialPageRoute(
+            builder: (context) => AppInstallationPage(
+              appName: arguments?['appName'] ?? '',
+              appIcon: arguments?['appIcon'] ?? '',
+              appDownloadUrl: arguments?['appDownloadUrl'] ?? '',
+            ),
+          );
+        }
+        // Handle other routes if needed
+        return null;
+      },
       routes: {
         // '': (context) => const CupertinoStudiosHomePage(),
         '/audify': (context) => const AudifyPage(),
         '/audifymusicplayer': (context) => const AudifyMusicPlayerPage(),
         '/gpacalculator': (context) => const GPACalculatorPage(),
+        // '/iosinstallation': (context) => const AppInstallationPage(
+        //       appDownloadUrl: '',
+        //       appName: '',
+        //     ),
         // Add other routes as needed
       },
       theme: ThemeData(

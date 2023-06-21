@@ -13,7 +13,10 @@ class AudifyPage extends StatelessWidget {
       appImage: 'images/audify-songs.png',
       playStoreUrl:
           "https://play.google.com/store/apps/details?id=com.audify.android",
-      appStoreUrl: "https://www.apple.com/app-store/",
+      appName: 'Audify',
+      appDownloadUrl:
+          'https://drive.google.com/uc?id=1isry2Pj6mfqc6CzfkppjiZXekCgKKsFy&export=download',
+      // 'https://drive.google.com/file/d/1isry2Pj6mfqc6CzfkppjiZXekCgKKsFy/view?usp=sharing',
       phoneImage: 'images/audify-phone-image.png',
       privacyPolicyUrl:
           'https://www.privacypolicies.com/live/d15819cb-1e41-44db-8e0d-d69659274d8e',
