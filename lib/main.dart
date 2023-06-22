@@ -1,13 +1,17 @@
 import 'package:cupertino_studios/audifymusicplayer_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'audify_page.dart';
 import 'gpacalculator_page.dart';
 import 'ipainstallation_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const CupertinoStudiosWebsite());
 }
 
