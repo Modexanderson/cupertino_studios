@@ -128,278 +128,357 @@ class _PagesWidgetState extends State<PagesWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CupertinoNavigationBar(
-        middle: Text(
-          widget.title,
-          style: const TextStyle(
-            fontSize: 30,
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        appBar: CupertinoNavigationBar(
+          middle: Text(
+            widget.title,
+            style: const TextStyle(
+              fontSize: 30,
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(left: 140, right: 140),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      AnimatedBuilder(
-                        animation: _animationController!,
-                        builder: (context, child) {
-                          return Opacity(
-                            opacity: _fadeAnimation!.value,
-                            child: AnimatedContainer(
-                              duration: const Duration(seconds: 1),
-                              width: _sizeAnimation!.value * 70,
-                              height: _sizeAnimation!.value * 70,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: constraints.maxWidth < 600
+                    ? const EdgeInsets.only(left: 10, right: 10)
+                    : const EdgeInsets.only(left: 140, right: 140),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        AnimatedBuilder(
+                          animation: _animationController!,
+                          builder: (context, child) {
+                            return Opacity(
+                              opacity: _fadeAnimation!.value,
+                              child: AnimatedContainer(
+                                duration: const Duration(seconds: 1),
+                                width: _sizeAnimation!.value * 70,
+                                height: _sizeAnimation!.value * 70,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    widget.appLogo,
+                                    // width: ,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        Expanded(
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/');
+                                    },
+                                    child: const Text('Home')),
+                                // TextButton(
+                                //     onPressed: () {}, child: const Text('FAQ')),
+                                // TextButton(
+                                //     onPressed: () {
+                                //       launchUrl(
+                                //         Uri.parse(
+                                //           'https://twitter.com/StudioCupertino',
+                                //         ),
+                                //       );
+                                //     },
+                                //     child: const Text('Blog')),
+                                TextButton(
+                                    onPressed: () {
+                                      launchUrl(
+                                        Uri.parse(
+                                          widget.privacyPolicyUrl,
+                                        ),
+                                      );
+                                    },
+                                    child: const Text('Privacy Policy')),
+                              ]),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: constraints.maxWidth < 900
+                            ? Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SlideTransition(
+                                    position: _textSlideAnimation!,
+                                    child: Text(
+                                      widget.shortDescription,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.03,
+                                      ),
+                                    ),
+                                  ),
+                                  SlideTransition(
+                                    position: _imageSlideAnimation!,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Image.asset(
+                                          widget.appImage,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.6,
+                                          height: 650,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: SlideTransition(
+                                      position: _textSlideAnimation!,
+                                      child: Text(
+                                        widget.shortDescription,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.03,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: SlideTransition(
+                                      position: _imageSlideAnimation!,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Image.asset(
+                                            widget.appImage,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.6,
+                                            height: 650,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      ),
+                    ),
+                    const SizedBox(height: 100),
+                    Text(
+                      'Install Now!',
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .navTitleTextStyle
+                          .copyWith(fontSize: 50.0),
+                    ),
+                    const SizedBox(height: 100),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CupertinoButton(
+                              onPressed: () => _launchURL(widget.playStoreUrl),
+                              child: Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'images/play_store.png',
+                                        width: 100,
+                                        // height: 40,
+                                      ),
+                                    ),
+                                    const Text(
+                                      'Google Play Store',
+                                      style: TextStyle(
+                                          fontSize: 20, fontFamily: 'HACKED'),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            // const SizedBox(width: 16),
+                            // CupertinoButton(
+                            //   onPressed: () {
+                            //     Navigator.pushNamed(
+                            //       context,
+                            //       '/iosinstallation',
+                            //       arguments: {
+                            //         'appName': widget.appName,
+                            //         'appIcon': widget.appLogo,
+                            //         'appDownloadUrl': widget.appDownloadUrl,
+                            //       },
+                            //     );
+                            //   },
+                            //   // onPressed: () => _launchURL(widget.appStoreUrl),
+                            //   child: ClipRRect(
+                            //     borderRadius: BorderRadius.circular(8.0),
+                            //     child: Image.asset(
+                            //       'images/app_store.png',
+                            //       width: 100,
+                            //       // height: 40,
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    const Text(
+                      'iOS VERSION IN DEVELOPMENT',
+                      style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    const SizedBox(height: 100),
+                    Text(
+                      'Highlights',
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .navTitleTextStyle
+                          .copyWith(fontSize: 50.0),
+                    ),
+                    const SizedBox(height: 100),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.asset(
-                                  widget.appLogo,
-                                  // width: ,
-                                  fit: BoxFit.cover,
+                                  widget.phoneImage,
+                                  // width:
+                                  //     MediaQuery.of(context).size.width * 0.6,
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ),
-                      Expanded(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/');
-                                  },
-                                  child: const Text('Home')),
-                              TextButton(
-                                  onPressed: () {}, child: const Text('FAQ')),
-                              TextButton(
-                                  onPressed: () {
-                                    launchUrl(
-                                      Uri.parse(
-                                        'https://twitter.com/StudioCupertino',
-                                      ),
-                                    );
-                                  },
-                                  child: const Text('Blog')),
-                              TextButton(
-                                  onPressed: () {
-                                    launchUrl(
-                                      Uri.parse(
-                                        widget.privacyPolicyUrl,
-                                      ),
-                                    );
-                                  },
-                                  child: const Text('Privacy Policy')),
-                            ]),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SlideTransition(
-                            position: _textSlideAnimation!,
-                            child: Text(
-                              widget.shortDescription,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 50,
+                            const SizedBox(width: 50.0),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 100.0),
+                                  _buildFeatureRow(
+                                    widget.highlightsIcon1,
+                                    widget.highlightsTitle1,
+                                    widget.highlightsDescrition1,
+                                  ),
+                                  const SizedBox(height: 50.0),
+                                  _buildFeatureRow(
+                                    widget.highlightsIcon2,
+                                    widget.highlightsTitle2,
+                                    widget.highlightsDescrition2,
+                                  ),
+                                  const SizedBox(height: 50.0),
+                                  _buildFeatureRow(
+                                    widget.highlightsIcon3,
+                                    widget.highlightsTitle3,
+                                    widget.highlightsDescrition3,
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          SlideTransition(
-                            position: _imageSlideAnimation!,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Image.asset(
-                                  widget.appImage,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 650,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 100),
-                  Text(
-                    'Install Now!',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .navTitleTextStyle
-                        .copyWith(fontSize: 50.0),
-                  ),
-                  const SizedBox(height: 100),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CupertinoButton(
-                            onPressed: () => _launchURL(widget.playStoreUrl),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'images/play_store.png',
-                                width: 120,
-                                // height: 40,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          CupertinoButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/iosinstallation',
-                                arguments: {
-                                  'appName': widget.appName,
-                                  'appIcon': widget.appLogo,
-                                  'appDownloadUrl': widget.appDownloadUrl,
-                                },
-                              );
-                            },
-                            // onPressed: () => _launchURL(widget.appStoreUrl),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'images/app_store.png',
-                                width: 120,
-                                // height: 40,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 100),
-                  Text(
-                    'Highlights',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .navTitleTextStyle
-                        .copyWith(fontSize: 50.0),
-                  ),
-                  const SizedBox(height: 100),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                widget.phoneImage,
-                                width: 200,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 50.0),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 100.0),
-                                _buildFeatureRow(
-                                  widget.highlightsIcon1,
-                                  widget.highlightsTitle1,
-                                  widget.highlightsDescrition1,
-                                ),
-                                const SizedBox(height: 50.0),
-                                _buildFeatureRow(
-                                  widget.highlightsIcon2,
-                                  widget.highlightsTitle2,
-                                  widget.highlightsDescrition2,
-                                ),
-                                const SizedBox(height: 50.0),
-                                _buildFeatureRow(
-                                  widget.highlightsIcon3,
-                                  widget.highlightsTitle3,
-                                  widget.highlightsDescrition3,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 100),
-            Container(
-              padding: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  Text(
-                    'Sleek Interface',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .navTitleTextStyle
-                        .copyWith(fontSize: 50.0),
-                  ),
-                  const SizedBox(height: 100.0),
-                  Card(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(widget.featureImage,
-                          width: MediaQuery.of(context).size.width,
-                          fit: BoxFit.cover),
+              const SizedBox(height: 100),
+              Container(
+                padding: EdgeInsets.zero,
+                child: Column(
+                  children: [
+                    Text(
+                      'Sleek Interface',
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .navTitleTextStyle
+                          .copyWith(fontSize: 50.0),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                    const SizedBox(height: 100.0),
+                    Card(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(widget.featureImage,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildFeatureRow(IconData iconData, String title, String description) {
-    return Row(
-      children: [
-        Icon(iconData, size: 24.0, color: Colors.black),
-        const SizedBox(width: 8.0),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return Row(
+        children: [
+          Icon(iconData, size: 25, color: Colors.black),
+          const SizedBox(width: 8.0),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: constraints.maxWidth > 900 ? 20 : 16,
+                  ),
+                ),
+                const SizedBox(height: 4.0),
+                Text(
+                  description,
+                  style: const TextStyle(overflow: TextOverflow.clip),
+                ),
+              ],
             ),
-            const SizedBox(height: 4.0),
-            Text(description),
-          ],
-        ),
-      ],
-    );
+          ),
+        ],
+      );
+    });
   }
 }

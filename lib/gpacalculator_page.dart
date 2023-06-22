@@ -29,7 +29,7 @@ class GPACalculatorPage extends StatelessWidget {
       highlightsIcon3: CupertinoIcons.conversation_bubble,
       highlightsTitle3: 'Request Features',
       highlightsDescrition3: 'Request more features.',
-      featureImage: 'images/audify-plus-feature.png',
+      featureImage: 'images/gpa-calculator-feature.png',
     );
   }
 }
