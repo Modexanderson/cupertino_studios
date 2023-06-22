@@ -225,6 +225,9 @@ class _PagesWidgetState extends State<PagesWidget>
                                       ),
                                     ),
                                   ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
                                   SlideTransition(
                                     position: _imageSlideAnimation!,
                                     child: ClipRRect(
