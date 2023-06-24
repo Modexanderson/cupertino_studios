@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cupertino_studios/audifymusicplayer_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +56,7 @@ class CupertinoStudiosWebsite extends StatelessWidget {
         fontFamily: 'SFPRODISPLAYMEDIUM',
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
-            fontFamily: 'HACKED',
+            fontFamily: 'SF Arch Rival Bold',
             fontSize: 20, // Adjust the font size as needed
             fontWeight: FontWeight.bold, // Customize the font weight if desired
             // Other text style properties
@@ -75,7 +77,7 @@ class CupertinoStudiosWebsite extends StatelessWidget {
           // primaryContrastingColor: CupertinoColors.activeBlue,
           textTheme: CupertinoTextThemeData(
             navTitleTextStyle: TextStyle(
-              fontFamily: 'HACKED',
+              fontFamily: 'SF Arch Rival Bold',
               fontSize: 20, // Adjust the font size as needed
               fontWeight:
                   FontWeight.bold, // Customize the font weight if desired
@@ -95,59 +97,119 @@ class CupertinoStudiosWebsite extends StatelessWidget {
 
 class CupertinoStudiosHomePage extends StatelessWidget {
   const CupertinoStudiosHomePage({super.key});
+  void sendEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: 'cupertinostudios@gmail.com',
+      queryParameters: {
+        'body': 'Hello, ',
+      },
+    );
+
+    if (await canLaunch(emailUri.toString())) {
+      await launch(emailUri.toString());
+    } else {
+      throw 'Could not launch email';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Center(
+        child: Container(
+          padding: const EdgeInsets.only(left: 140, right: 140),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Card(
-                child: ColorFiltered(
-                  colorFilter: const ColorFilter.mode(
-                      CupertinoColors.black, BlendMode.srcIn),
-                  child: Image.asset(
-                    'icons/logo-no-background.png',
-                    width: MediaQuery.of(context).size.width * 0.35,
+              Row(
+                children: [
+                  ColorFiltered(
+                    colorFilter: const ColorFilter.mode(
+                        CupertinoColors.black, BlendMode.srcIn),
+                    child: Image.asset(
+                      'icons/logo-no-background.png',
+                      width: MediaQuery.of(context).size.width * 0.09,
+                      // height: 100,
 
-                    fit: BoxFit.cover,
-                    // alignment: Alignment.topCenter,
+                      fit: BoxFit.contain,
+                      // alignment: Alignment.topCenter,
+                    ),
+                  ),
+                  const Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 123.0),
+                      child: Text(
+                        'Welcome to Cupertino Studios',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const Card(
+                child: Text(
+                  'We build beautiful and powerful mobile apps.',
+                  style: TextStyle(fontSize: 16),
+                  // textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                alignment: Alignment.center,
+                child: Card(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Stack(
+                      children: [
+                        ImageFiltered(
+                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Image.asset('images/home-screen-image.jpg',
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.cover),
+                        ),
+                        const Positioned.fill(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              width: 800,
+                              child: Text(
+                                '"High-quality mobile apps are more than just lines of code. They are seamless experiences, crafted with precision and care, that delight users and solve their everyday challenges."',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.blueGrey,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Welcome to Cupertino Studios',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'We build beautiful and powerful mobile apps.',
-                style: TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 child: const Text('Contact Us'),
                 onPressed: () {
-                  launchUrl(
-                    Uri.parse(
-                      'mailto:cupertinostudios@gmail.com%26subject%3DRegarding%2520Mobile%2520App',
-                    ),
-                  );
+                  sendEmail();
                 },
               ),
               const SizedBox(height: 20),
-              Text(
-                'Our Apps',
-                style: CupertinoTheme.of(context)
-                    .textTheme
-                    .navTitleTextStyle
-                    .copyWith(fontSize: 20.0),
+              Card(
+                child: Text(
+                  'Our Apps',
+                  style: CupertinoTheme.of(context)
+                      .textTheme
+                      .navTitleTextStyle
+                      .copyWith(fontSize: 20.0),
+                ),
               ),
               const SizedBox(height: 20),
               Row(
@@ -176,6 +238,23 @@ class CupertinoStudiosHomePage extends StatelessWidget {
                   ),
                 ],
               ),
+              Container(
+                color: Colors.grey[
+                    200], // Set the desired background color for the footer
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '© 2023 Cupertino Studios. All rights reserved.', // Replace with your company name and year
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black54, // Set the desired text color
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -210,7 +289,7 @@ class AppCard extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Text(
                   appName,
                   style: const TextStyle(

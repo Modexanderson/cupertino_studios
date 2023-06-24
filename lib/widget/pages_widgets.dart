@@ -21,6 +21,7 @@ class PagesWidget extends StatefulWidget {
   final String privacyPolicyUrl;
   final String shortDescription;
   final String playStoreUrl;
+  final String appGalleryUrl;
   final String? appStoreUrl;
   final String featureImage;
   const PagesWidget({
@@ -42,6 +43,7 @@ class PagesWidget extends StatefulWidget {
     required this.privacyPolicyUrl,
     required this.shortDescription,
     required this.playStoreUrl,
+    required this.appGalleryUrl,
     this.appStoreUrl,
     required this.featureImage,
     super.key,
@@ -142,7 +144,7 @@ class _PagesWidgetState extends State<PagesWidget>
           child: Column(
             children: [
               Container(
-                padding: constraints.maxWidth < 600
+                padding: constraints.maxWidth < 900
                     ? const EdgeInsets.only(left: 10, right: 10)
                     : const EdgeInsets.only(left: 140, right: 140),
                 child: Column(
@@ -226,21 +228,22 @@ class _PagesWidgetState extends State<PagesWidget>
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 15,
+                                    height: 35,
                                   ),
-                                  SlideTransition(
-                                    position: _imageSlideAnimation!,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
+                                  Container(
+                                    alignment: Alignment.topCenter,
+                                    child: SlideTransition(
+                                      position: _imageSlideAnimation!,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                         child: Image.asset(
                                           widget.appImage,
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
                                               0.6,
-                                          height: 650,
+                                          height: 660,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -250,9 +253,10 @@ class _PagesWidgetState extends State<PagesWidget>
                               )
                             : Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Expanded(
+                                  Flexible(
+                                    flex: 1,
                                     child: SlideTransition(
                                       position: _textSlideAnimation!,
                                       child: Text(
@@ -267,21 +271,22 @@ class _PagesWidgetState extends State<PagesWidget>
                                       ),
                                     ),
                                   ),
-                                  Expanded(
-                                    child: SlideTransition(
-                                      position: _imageSlideAnimation!,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Align(
-                                          alignment: Alignment.topCenter,
+                                  Flexible(
+                                    flex: 1,
+                                    child: Container(
+                                      alignment: Alignment.topCenter,
+                                      child: SlideTransition(
+                                        position: _imageSlideAnimation!,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                           child: Image.asset(
                                             widget.appImage,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
                                                 0.6,
-                                            height: 650,
+                                            height: 660,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -298,7 +303,8 @@ class _PagesWidgetState extends State<PagesWidget>
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .navTitleTextStyle
-                          .copyWith(fontSize: 50.0),
+                          .copyWith(
+                              fontSize: 50.0, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 100),
                     Card(
@@ -309,25 +315,24 @@ class _PagesWidgetState extends State<PagesWidget>
                           children: [
                             CupertinoButton(
                               onPressed: () => _launchURL(widget.playStoreUrl),
-                              child: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'images/play_store.png',
-                                        width: 100,
-                                        // height: 40,
-                                      ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'images/play_store.png',
+                                      width: 100,
+                                      // height: 40,
                                     ),
-                                    const Text(
-                                      'Google Play Store',
-                                      style: TextStyle(
-                                          fontSize: 20, fontFamily: 'HACKED'),
-                                    )
-                                  ],
-                                ),
+                                  ),
+                                  const Text(
+                                    'Google Play Store',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'SF Arch Rival Bold'),
+                                  )
+                                ],
                               ),
                             ),
                             // const SizedBox(width: 16),
@@ -358,6 +363,39 @@ class _PagesWidgetState extends State<PagesWidget>
                       ),
                     ),
                     const SizedBox(height: 40),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CupertinoButton(
+                              onPressed: () => _launchURL(widget.appGalleryUrl),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'images/huawei-appgallery.png',
+                                      width: 100,
+                                      // height: 40,
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Huawei AppGallery',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'SF Arch Rival Bold'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
                     const Text(
                       'iOS VERSION IN DEVELOPMENT',
                       style: TextStyle(
@@ -370,7 +408,8 @@ class _PagesWidgetState extends State<PagesWidget>
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .navTitleTextStyle
-                          .copyWith(fontSize: 50.0),
+                          .copyWith(
+                              fontSize: 50.0, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 100),
                     Card(
@@ -433,7 +472,8 @@ class _PagesWidgetState extends State<PagesWidget>
                       style: CupertinoTheme.of(context)
                           .textTheme
                           .navTitleTextStyle
-                          .copyWith(fontSize: 50.0),
+                          .copyWith(
+                              fontSize: 50.0, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 100.0),
                     Card(

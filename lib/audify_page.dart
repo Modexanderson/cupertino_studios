@@ -13,6 +13,7 @@ class AudifyPage extends StatelessWidget {
       appImage: 'images/audify-songs.png',
       playStoreUrl:
           "https://play.google.com/store/apps/details?id=com.audify.android",
+      appGalleryUrl: "https://appgallery.huawei.com/app/C106997283",
       appName: 'Audify',
       appDownloadUrl:
           'https://drive.google.com/uc?id=1isry2Pj6mfqc6CzfkppjiZXekCgKKsFy&export=download',
