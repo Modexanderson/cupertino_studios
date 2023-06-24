@@ -4,6 +4,7 @@ import 'package:cupertino_studios/audifymusicplayer_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'audify_page.dart';
@@ -115,151 +116,199 @@ class CupertinoStudiosHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(left: 140, right: 140),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: [
-                  ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                        CupertinoColors.black, BlendMode.srcIn),
-                    child: Image.asset(
-                      'icons/logo-no-background.png',
-                      width: MediaQuery.of(context).size.width * 0.09,
-                      // height: 100,
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(left: 140, right: 140),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: [
+                    ColorFiltered(
+                      colorFilter: const ColorFilter.mode(
+                          CupertinoColors.black, BlendMode.srcIn),
+                      child: Image.asset(
+                        'icons/logo-no-background.png',
+                        width: MediaQuery.of(context).size.width * 0.09,
+                        // height: 100,
 
-                      fit: BoxFit.contain,
-                      // alignment: Alignment.topCenter,
-                    ),
-                  ),
-                  const Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 123.0),
-                      child: Text(
-                        'Welcome to Cupertino Studios',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
+                        fit: BoxFit.contain,
+                        // alignment: Alignment.topCenter,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Card(
-                child: Text(
-                  'We build beautiful and powerful mobile apps.',
-                  style: TextStyle(fontSize: 16),
-                  // textAlign: TextAlign.center,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Container(
-                alignment: Alignment.center,
-                child: Card(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Stack(
-                      children: [
-                        ImageFiltered(
-                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Image.asset('images/home-screen-image.jpg',
-                              width: MediaQuery.of(context).size.width,
-                              fit: BoxFit.cover),
-                        ),
-                        const Positioned.fill(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: SizedBox(
-                              width: 800,
+                    constraints.maxWidth < 900
+                        ? const Expanded(
+                            child: Text(
+                              'Welcome to Cupertino Studios',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        : const Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 123.0),
                               child: Text(
-                                '"High-quality mobile apps are more than just lines of code. They are seamless experiences, crafted with precision and care, that delight users and solve their everyday challenges."',
+                                'Welcome to Cupertino Studios',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.blueGrey,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('Contact Us'),
-                onPressed: () {
-                  sendEmail();
-                },
-              ),
-              const SizedBox(height: 20),
-              Card(
-                child: Text(
-                  'Our Apps',
-                  style: CupertinoTheme.of(context)
-                      .textTheme
-                      .navTitleTextStyle
-                      .copyWith(fontSize: 20.0),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  AppCard(
-                    appName: 'Audify',
-                    platform: 'Android, iOS',
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/audify');
-                    },
-                  ),
-                  AppCard(
-                    appName: 'Audify Music Player',
-                    platform: 'Android, iOS',
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/audifymusicplayer');
-                    },
-                  ),
-                  AppCard(
-                    appName: 'GPA Calculator',
-                    platform: 'Android, iOS',
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/gpacalculator');
-                    },
-                  ),
-                ],
-              ),
-              Container(
-                color: Colors.grey[
-                    200], // Set the desired background color for the footer
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '© 2023 Cupertino Studios. All rights reserved.', // Replace with your company name and year
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.black54, // Set the desired text color
-                      ),
-                    ),
+                          )
                   ],
                 ),
-              )
-            ],
+                const SizedBox(height: 20),
+                const Card(
+                  child: Text(
+                    'We build beautiful and powerful mobile apps.',
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  alignment: Alignment.center,
+                  child: Card(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Stack(
+                        children: [
+                          ImageFiltered(
+                            imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                            child: Image.asset('images/home-screen-image.jpg',
+                                width: MediaQuery.of(context).size.width,
+                                fit: BoxFit.cover),
+                          ),
+                          Positioned.fill(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                // width: 800,
+                                child: Text(
+                                  '"High-quality mobile apps are more than just lines of code. They are seamless experiences, crafted with precision and care, that delight users and solve their everyday challenges."',
+                                  style: TextStyle(
+                                    fontSize:
+                                        constraints.maxWidth < 700 ? 16 : 25,
+                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  child: const Text('Contact Us'),
+                  onPressed: () {
+                    sendEmail();
+                  },
+                ),
+                const SizedBox(height: 20),
+                Card(
+                  child: Text(
+                    'Our Apps',
+                    style: CupertinoTheme.of(context)
+                        .textTheme
+                        .navTitleTextStyle
+                        .copyWith(fontSize: 20.0),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                constraints.maxWidth < 900
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          AppCard(
+                            appName: 'Audify',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/audify');
+                            },
+                          ),
+                          AppCard(
+                            appName: 'Audify Music Player',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, '/audifymusicplayer');
+                            },
+                          ),
+                          AppCard(
+                            appName: 'GPA Calculator',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/gpacalculator');
+                            },
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          AppCard(
+                            appName: 'Audify',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/audify');
+                            },
+                          ),
+                          AppCard(
+                            appName: 'Audify Music Player',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, '/audifymusicplayer');
+                            },
+                          ),
+                          AppCard(
+                            appName: 'GPA Calculator',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/gpacalculator');
+                            },
+                          ),
+                        ],
+                      ),
+                Container(
+                  color: Colors.grey[
+                      200], // Set the desired background color for the footer
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '© 2023 Cupertino Studios. All rights reserved.', // Replace with your company name and year
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            overflow: TextOverflow.clip,
+                            color: Colors.black54, // Set the desired text color
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -276,34 +325,33 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  appName,
-                  style: const TextStyle(
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                appName,
+                style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Platform: $platform',
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ],
-            ),
+                    overflow: TextOverflow.clip),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Platform: $platform',
+                style:
+                    const TextStyle(fontSize: 14, overflow: TextOverflow.clip),
+              ),
+            ],
           ),
         ),
       ),

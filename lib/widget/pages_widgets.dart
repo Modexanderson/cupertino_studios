@@ -209,7 +209,9 @@ class _PagesWidgetState extends State<PagesWidget>
                     const SizedBox(height: 20),
                     Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: constraints.maxWidth < 900
+                            ? const EdgeInsets.all(10.0)
+                            : const EdgeInsets.all(4.0),
                         child: constraints.maxWidth < 900
                             ? Column(
                                 mainAxisAlignment:
@@ -365,7 +367,7 @@ class _PagesWidgetState extends State<PagesWidget>
                     const SizedBox(height: 40),
                     Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
