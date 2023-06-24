@@ -119,7 +119,7 @@ class CupertinoStudiosHomePage extends StatelessWidget {
       return Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.only(left: 140, right: 140),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: <Widget>[
                 Row(

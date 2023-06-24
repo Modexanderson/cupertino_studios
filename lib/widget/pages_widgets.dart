@@ -135,9 +135,7 @@ class _PagesWidgetState extends State<PagesWidget>
         appBar: CupertinoNavigationBar(
           middle: Text(
             widget.title,
-            style: const TextStyle(
-              fontSize: 30,
-            ),
+            style: const TextStyle(fontSize: 30, color: Colors.black),
           ),
         ),
         body: SingleChildScrollView(
@@ -241,10 +239,7 @@ class _PagesWidgetState extends State<PagesWidget>
                                             BorderRadius.circular(8.0),
                                         child: Image.asset(
                                           widget.appImage,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.6,
+                                          width: double.infinity,
                                           height: 660,
                                           fit: BoxFit.cover,
                                         ),
