@@ -70,7 +70,8 @@ class AppInstallationPage extends StatelessWidget {
             Text(
               appName,
               style: const TextStyle(
-                fontSize: 30,
+                fontSize: 60,
+                fontFamily: 'ALVA',
               ),
             ),
             const SizedBox(
@@ -78,7 +79,10 @@ class AppInstallationPage extends StatelessWidget {
             ),
             const Text(
               'Cupertino Studios',
-              style: TextStyle(fontSize: 30, fontFamily: 'SF Arch Rival Bold'),
+              style: TextStyle(
+                fontSize: 13,
+                fontFamily: 'SF Arch Rival Bold',
+              ),
             ),
             const SizedBox(),
             Row(

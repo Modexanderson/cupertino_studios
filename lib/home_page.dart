@@ -444,7 +444,7 @@ the Nigeria and other country's grading system.
                                     containsAds: true,
                                     iap: false,
                                     imageUrls: [
-                                      "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943",
+                                      "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5",
                                       "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FA%20close-up%20view%20of%20petal%20image.png?alt=media&token=7655da56-63a5-4d99-b78c-9423873582a8",
                                       "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FArtwork%20Image%20Description.png?alt=media&token=ece0a75f-4e38-4554-8ab2-de6c83a7fab1",
                                       "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d",
@@ -791,7 +791,7 @@ the Nigeria and other country's grading system.
                                     containsAds: true,
                                     iap: false,
                                     imageUrls: [
-                                      "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943",
+                                      "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5",
                                       "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FA%20close-up%20view%20of%20petal%20image.png?alt=media&token=7655da56-63a5-4d99-b78c-9423873582a8",
                                       "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FArtwork%20Image%20Description.png?alt=media&token=ece0a75f-4e38-4554-8ab2-de6c83a7fab1",
                                       "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d",

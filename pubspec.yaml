@@ -61,7 +61,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -99,6 +98,10 @@ flutter:
     - family: SFPRODISPLAYMEDIUM
       fonts:
         - asset: assets/fonts/SFPRODISPLAYMEDIUM.OTF
+
+    - family: ALVA
+      fonts:
+        - asset: assets/fonts/ALVA-Regular.ttf
 
   #
   # For details regarding fonts from package dependencies,
