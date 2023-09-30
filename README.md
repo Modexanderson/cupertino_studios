@@ -1,6 +1,6 @@
 # cupertino_studios
 
-A new Flutter project.
+Cupertino Studios WebApp.
 
 ## Getting Started
 

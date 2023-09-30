@@ -1,81 +1,83 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cupertino_studios/app_installation_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'app_installation_page_arguments.dart';
+import 'app_page_argument.dart';
+
 class AppPage extends StatefulWidget {
-  final String title;
-  final String appLogo;
-  final String appImage;
-  final String appName;
-  final IconData highlightsIcon1;
-  final IconData highlightsIcon2;
-  final IconData highlightsIcon3;
-  final String highlightsTitle1;
-  final String highlightsTitle2;
-  final String highlightsTitle3;
-  final String highlightsDescrition1;
-  final String highlightsDescrition2;
-  final String highlightsDescrition3;
-  final String phoneImage;
-  final String privacyPolicyUrl;
-  final String shortDescription;
-  final String playStoreUrl;
-  final String appGalleryUrl;
-  final String? appStoreUrl;
-  final String featureImage;
-  final bool containsAds;
-  final bool iap;
-  final List<String> imageUrls;
-  final androidUrl;
-  final iosUrl;
-  final linuxUrl;
-  final macUrl;
-  final windowsUrl;
-  final installs;
-  final rating;
-  final whatsNew;
-  final dataSafety;
-  final shortIDescription;
-  final longDescription;
-  final category;
+  // final String title;
+  // final String appLogo;
+  // final String appImage;
+  // final String appName;
+  // final IconData highlightsIcon1;
+  // final IconData highlightsIcon2;
+  // final IconData highlightsIcon3;
+  // final String highlightsTitle1;
+  // final String highlightsTitle2;
+  // final String highlightsTitle3;
+  // final String highlightsDescrition1;
+  // final String highlightsDescrition2;
+  // final String highlightsDescrition3;
+  // final String phoneImage;
+  // final String privacyPolicyUrl;
+  // final String shortDescription;
+  // final String playStoreUrl;
+  // final String appGalleryUrl;
+  // final String? appStoreUrl;
+  // final String featureImage;
+  // final bool containsAds;
+  // final bool iap;
+  // final List<String> imageUrls;
+  // final androidUrl;
+  // final iosUrl;
+  // final linuxUrl;
+  // final macUrl;
+  // final windowsUrl;
+  // final installs;
+  // final rating;
+  // final whatsNew;
+  // final dataSafety;
+  // final shortIDescription;
+  // final longDescription;
+  // final category;
   const AppPage({
-    required this.title,
-    required this.appLogo,
-    required this.appImage,
-    required this.appName,
-    required this.highlightsIcon1,
-    required this.highlightsIcon2,
-    required this.highlightsIcon3,
-    required this.highlightsTitle1,
-    required this.highlightsTitle2,
-    required this.highlightsTitle3,
-    required this.highlightsDescrition1,
-    required this.highlightsDescrition2,
-    required this.highlightsDescrition3,
-    required this.phoneImage,
-    required this.privacyPolicyUrl,
-    required this.shortDescription,
-    required this.playStoreUrl,
-    required this.appGalleryUrl,
-    this.appStoreUrl,
-    required this.featureImage,
-    required this.containsAds,
-    required this.iap,
-    required this.imageUrls,
-    required this.androidUrl,
-    required this.iosUrl,
-    required this.linuxUrl,
-    required this.macUrl,
-    required this.windowsUrl,
-    this.installs,
-    this.rating,
-    this.whatsNew,
-    this.dataSafety,
-    this.shortIDescription,
-    this.longDescription,
-    this.category,
+    // required this.title,
+    // required this.appLogo,
+    // required this.appImage,
+    // required this.appName,
+    // required this.highlightsIcon1,
+    // required this.highlightsIcon2,
+    // required this.highlightsIcon3,
+    // required this.highlightsTitle1,
+    // required this.highlightsTitle2,
+    // required this.highlightsTitle3,
+    // required this.highlightsDescrition1,
+    // required this.highlightsDescrition2,
+    // required this.highlightsDescrition3,
+    // required this.phoneImage,
+    // required this.privacyPolicyUrl,
+    // required this.shortDescription,
+    // required this.playStoreUrl,
+    // required this.appGalleryUrl,
+    // this.appStoreUrl,
+    // required this.featureImage,
+    // required this.containsAds,
+    // required this.iap,
+    // required this.imageUrls,
+    // required this.androidUrl,
+    // required this.iosUrl,
+    // required this.linuxUrl,
+    // required this.macUrl,
+    // required this.windowsUrl,
+    // this.installs,
+    // this.rating,
+    // this.whatsNew,
+    // this.dataSafety,
+    // this.shortIDescription,
+    // this.longDescription,
+    // this.category,
     super.key,
   });
 
@@ -159,11 +161,47 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as AppPageArguments;
+    final title = args.title;
+    final appLogo = args.appLogo;
+    final appImage = args.appImage;
+    final appName = args.appName;
+    final highlightsIcon1 = args.highlightsIcon1;
+    final highlightsIcon2 = args.highlightsIcon2;
+    final highlightsIcon3 = args.highlightsIcon3;
+    final highlightsTitle1 = args.highlightsTitle1;
+    final highlightsTitle2 = args.highlightsTitle2;
+    final highlightsTitle3 = args.highlightsTitle3;
+    final highlightsDescrition1 = args.highlightsDescrition1;
+    final highlightsDescrition2 = args.highlightsDescrition2;
+    final highlightsDescrition3 = args.highlightsDescrition3;
+    final phoneImage = args.phoneImage;
+    final privacyPolicyUrl = args.privacyPolicyUrl;
+    final shortDescription = args.shortDescription;
+    final playStoreUrl = args.playStoreUrl;
+    final appGalleryUrl = args.appGalleryUrl;
+    final appStoreUrl = args.appStoreUrl;
+    final featureImage = args.featureImage;
+    final containsAds = args.containsAds;
+    final iap = args.iap;
+    final imageUrls = args.imageUrls;
+    final androidUrl = args.androidUrl;
+    final iosUrl = args.iosUrl;
+    final linuxUrl = args.linuxUrl;
+    final macUrl = args.macUrl;
+    final windowsUrl = args.windowsUrl;
+    final installs = args.installs;
+    final rating = args.rating;
+    final whatsNew = args.whatsNew;
+    final dataSafety = args.dataSafety;
+    final shortIDescription = args.shortDescription;
+    final longDescription = args.longDescription;
+    final category = args.category;
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         appBar: CupertinoNavigationBar(
           middle: Text(
-            widget.title,
+            title,
             style: const TextStyle(fontSize: 30, color: Colors.black),
           ),
         ),
@@ -191,7 +229,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: CachedNetworkImage(
-                                    imageUrl: widget.appLogo,
+                                    imageUrl: appLogo,
                                     placeholder: (context, url) => const Center(
                                         child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
@@ -231,7 +269,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                     onPressed: () {
                                       launchUrl(
                                         Uri.parse(
-                                          widget.privacyPolicyUrl,
+                                          privacyPolicyUrl,
                                         ),
                                       );
                                     },
@@ -254,7 +292,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                   SlideTransition(
                                     position: _textSlideAnimation!,
                                     child: Text(
-                                      widget.shortDescription,
+                                      shortDescription,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize:
@@ -274,7 +312,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: CachedNetworkImage(
-                                          imageUrl: widget.appImage,
+                                          imageUrl: appImage,
                                           placeholder: (context, url) =>
                                               const Center(
                                                   child:
@@ -299,7 +337,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                     child: SlideTransition(
                                       position: _textSlideAnimation!,
                                       child: Text(
-                                        widget.shortDescription,
+                                        shortDescription,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: MediaQuery.of(context)
@@ -320,7 +358,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: CachedNetworkImage(
-                                            imageUrl: widget.appImage,
+                                            imageUrl: appImage,
                                             placeholder: (context, url) =>
                                                 const Center(
                                                     child:
@@ -358,26 +396,24 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                           children: [
                             CupertinoButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AppInstallationPage(
-                                              appName: widget.appName,
-                                              containsAds: widget.containsAds,
-                                              iap: widget.iap,
-                                              installs: widget.installs,
-                                              rating: widget.rating,
-                                              whatsNew: widget.whatsNew,
-                                              dataSafety: widget.dataSafety,
-                                              shortDescription:
-                                                  widget.shortDescription,
-                                              longDescription:
-                                                  widget.longDescription,
-                                              category: widget.category,
-                                              downloadUrl: widget.androidUrl,
-                                              imageUrls: widget.imageUrls,
-                                            )));
+                                Navigator.pushNamed(
+                                    context, '/appInstallationPage',
+                                    arguments: AppInstallationPageArguments(
+                                      appName: appName,
+                                      appLogo: appLogo,
+                                      appId: 'com.$appName.android',
+                                      containsAds: containsAds,
+                                      iap: iap,
+                                      installs: installs,
+                                      rating: rating,
+                                      whatsNew: whatsNew,
+                                      dataSafety: dataSafety,
+                                      shortDescription: shortDescription,
+                                      longDescription: longDescription,
+                                      category: category,
+                                      downloadUrl: androidUrl,
+                                      imageUrls: imageUrls,
+                                    ));
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -411,254 +447,246 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CupertinoButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AppInstallationPage(
-                                              appName: widget.appName,
-                                              containsAds: widget.containsAds,
-                                              iap: widget.iap,
-                                              installs: widget.installs,
-                                              rating: widget.rating,
-                                              whatsNew: widget.whatsNew,
-                                              dataSafety: widget.dataSafety,
-                                              shortDescription:
-                                                  widget.shortDescription,
-                                              longDescription:
-                                                  widget.longDescription,
-                                              category: widget.category,
-                                              downloadUrl: widget.iosUrl,
-                                              imageUrls: widget.imageUrls,
-                                            )));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: CachedNetworkImage(
-                                      width: 100,
-                                      imageUrl:
-                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/apple.png?alt=media&token=5fe90103-f05c-4fab-8991-8c5f9c1a082d',
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                      fit: BoxFit
-                                          .cover, // Adjust the image's fit
-                                    ),
-                                  ),
-                                  const Text(
-                                    'iPhone OS',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: 'SF Arch Rival Bold'),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CupertinoButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AppInstallationPage(
-                                              appName: widget.appName,
-                                              containsAds: widget.containsAds,
-                                              iap: widget.iap,
-                                              installs: widget.installs,
-                                              rating: widget.rating,
-                                              whatsNew: widget.whatsNew,
-                                              dataSafety: widget.dataSafety,
-                                              shortDescription:
-                                                  widget.shortDescription,
-                                              longDescription:
-                                                  widget.longDescription,
-                                              category: widget.category,
-                                              downloadUrl: widget.linuxUrl,
-                                              imageUrls: widget.imageUrls,
-                                            )));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: CachedNetworkImage(
-                                      width: 100,
-                                      imageUrl:
-                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/linux.png?alt=media&token=5d05044f-a263-48e0-8165-38fa9123593a',
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                      fit: BoxFit
-                                          .cover, // Adjust the image's fit
-                                    ),
-                                  ),
-                                  const Text(
-                                    'Linux OS',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: 'SF Arch Rival Bold'),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CupertinoButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AppInstallationPage(
-                                              appName: widget.appName,
-                                              containsAds: widget.containsAds,
-                                              iap: widget.iap,
-                                              installs: widget.installs,
-                                              rating: widget.rating,
-                                              whatsNew: widget.whatsNew,
-                                              dataSafety: widget.dataSafety,
-                                              shortDescription:
-                                                  widget.shortDescription,
-                                              longDescription:
-                                                  widget.longDescription,
-                                              category: widget.category,
-                                              downloadUrl: widget.macUrl,
-                                              imageUrls: widget.imageUrls,
-                                            )));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: CachedNetworkImage(
-                                      width: 100,
-                                      imageUrl:
-                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/macOS.png?alt=media&token=10672558-6062-41a5-bc51-83d348c42e83',
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                      fit: BoxFit
-                                          .cover, // Adjust the image's fit
-                                    ),
-                                  ),
-                                  const Text(
-                                    'macOS',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: 'SF Arch Rival Bold'),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CupertinoButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            AppInstallationPage(
-                                              appName: widget.appName,
-                                              containsAds: widget.containsAds,
-                                              iap: widget.iap,
-                                              installs: widget.installs,
-                                              rating: widget.rating,
-                                              whatsNew: widget.whatsNew,
-                                              dataSafety: widget.dataSafety,
-                                              shortDescription:
-                                                  widget.shortDescription,
-                                              longDescription:
-                                                  widget.longDescription,
-                                              category: widget.category,
-                                              downloadUrl: widget.windowsUrl,
-                                              imageUrls: widget.imageUrls,
-                                            )));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: CachedNetworkImage(
-                                      width: 100,
-                                      imageUrl:
-                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/windows.png?alt=media&token=68325716-9094-4bfc-b121-67b336ab1460',
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                              child:
-                                                  CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                      fit: BoxFit
-                                          .cover, // Adjust the image's fit
-                                    ),
-                                  ),
-                                  const Text(
-                                    'Windows OS',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: 'SF Arch Rival Bold'),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // const SizedBox(height: 40),
+                    // Card(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(8.0),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         CupertinoButton(
+                    //           onPressed: () {
+                    //             Navigator.pushNamed(
+                    //                 context, '/appInstallationPage',
+                    //                 arguments: AppInstallationPageArguments(
+                    //                   appName: appName,
+                    //                   appLogo: appLogo,
+                    //                   appId: 'com.$appName.iOS',
+                    //                   containsAds: containsAds,
+                    //                   iap: iap,
+                    //                   installs: installs,
+                    //                   rating: rating,
+                    //                   whatsNew: whatsNew,
+                    //                   dataSafety: dataSafety,
+                    //                   shortDescription: shortDescription,
+                    //                   longDescription: longDescription,
+                    //                   category: category,
+                    //                   downloadUrl: iosUrl,
+                    //                   imageUrls: imageUrls,
+                    //                 ));
+                    //           },
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               ClipRRect(
+                    //                 borderRadius: BorderRadius.circular(8.0),
+                    //                 child: CachedNetworkImage(
+                    //                   width: 100,
+                    //                   imageUrl:
+                    //                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/apple.png?alt=media&token=5fe90103-f05c-4fab-8991-8c5f9c1a082d',
+                    //                   placeholder: (context, url) =>
+                    //                       const Center(
+                    //                           child:
+                    //                               CircularProgressIndicator()),
+                    //                   errorWidget: (context, url, error) =>
+                    //                       const Icon(Icons.error),
+                    //                   fit: BoxFit
+                    //                       .cover, // Adjust the image's fit
+                    //                 ),
+                    //               ),
+                    //               const Text(
+                    //                 'iPhone OS',
+                    //                 style: TextStyle(
+                    //                     fontSize: 20,
+                    //                     fontFamily: 'SF Arch Rival Bold'),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 40),
+                    // Card(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(8.0),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         CupertinoButton(
+                    //           onPressed: () {
+                    //             Navigator.pushNamed(
+                    //                 context, '/appInstallationPage',
+                    //                 arguments: AppInstallationPageArguments(
+                    //                   appName: appName,
+                    //                   appLogo: appLogo,
+                    //                   appId: 'com.$appName.linux',
+                    //                   containsAds: containsAds,
+                    //                   iap: iap,
+                    //                   installs: installs,
+                    //                   rating: rating,
+                    //                   whatsNew: whatsNew,
+                    //                   dataSafety: dataSafety,
+                    //                   shortDescription: shortDescription,
+                    //                   longDescription: longDescription,
+                    //                   category: category,
+                    //                   downloadUrl: linuxUrl,
+                    //                   imageUrls: imageUrls,
+                    //                 ));
+                    //           },
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               ClipRRect(
+                    //                 borderRadius: BorderRadius.circular(8.0),
+                    //                 child: CachedNetworkImage(
+                    //                   width: 100,
+                    //                   imageUrl:
+                    //                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/linux.png?alt=media&token=5d05044f-a263-48e0-8165-38fa9123593a',
+                    //                   placeholder: (context, url) =>
+                    //                       const Center(
+                    //                           child:
+                    //                               CircularProgressIndicator()),
+                    //                   errorWidget: (context, url, error) =>
+                    //                       const Icon(Icons.error),
+                    //                   fit: BoxFit
+                    //                       .cover, // Adjust the image's fit
+                    //                 ),
+                    //               ),
+                    //               const Text(
+                    //                 'Linux OS',
+                    //                 style: TextStyle(
+                    //                     fontSize: 20,
+                    //                     fontFamily: 'SF Arch Rival Bold'),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 40),
+                    // Card(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(8.0),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         CupertinoButton(
+                    //           onPressed: () {
+                    //             Navigator.pushNamed(
+                    //                 context, '/appInstallationPage',
+                    //                 arguments: AppInstallationPageArguments(
+                    //                   appName: appName,
+                    //                   appLogo: appLogo,
+                    //                   appId: 'com.$appName.macOS',
+                    //                   containsAds: containsAds,
+                    //                   iap: iap,
+                    //                   installs: installs,
+                    //                   rating: rating,
+                    //                   whatsNew: whatsNew,
+                    //                   dataSafety: dataSafety,
+                    //                   shortDescription: shortDescription,
+                    //                   longDescription: longDescription,
+                    //                   category: category,
+                    //                   downloadUrl: macUrl,
+                    //                   imageUrls: imageUrls,
+                    //                 ));
+                    //           },
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               ClipRRect(
+                    //                 borderRadius: BorderRadius.circular(8.0),
+                    //                 child: CachedNetworkImage(
+                    //                   width: 100,
+                    //                   imageUrl:
+                    //                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/macOS.png?alt=media&token=10672558-6062-41a5-bc51-83d348c42e83',
+                    //                   placeholder: (context, url) =>
+                    //                       const Center(
+                    //                           child:
+                    //                               CircularProgressIndicator()),
+                    //                   errorWidget: (context, url, error) =>
+                    //                       const Icon(Icons.error),
+                    //                   fit: BoxFit
+                    //                       .cover, // Adjust the image's fit
+                    //                 ),
+                    //               ),
+                    //               const Text(
+                    //                 'macOS',
+                    //                 style: TextStyle(
+                    //                     fontSize: 20,
+                    //                     fontFamily: 'SF Arch Rival Bold'),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 40),
+                    // Card(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(8.0),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         CupertinoButton(
+                    //           onPressed: () {
+                    //             Navigator.pushNamed(
+                    //                 context, '/appInstallationPage',
+                    //                 arguments: AppInstallationPageArguments(
+                    //                   appName: appName,
+                    //                   appLogo: appLogo,
+                    //                   appId: 'com.$appName.windows',
+                    //                   containsAds: containsAds,
+                    //                   iap: iap,
+                    //                   installs: installs,
+                    //                   rating: rating,
+                    //                   whatsNew: whatsNew,
+                    //                   dataSafety: dataSafety,
+                    //                   shortDescription: shortDescription,
+                    //                   longDescription: longDescription,
+                    //                   category: category,
+                    //                   downloadUrl: windowsUrl,
+                    //                   imageUrls: imageUrls,
+                    //                 ));
+                    //           },
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               ClipRRect(
+                    //                 borderRadius: BorderRadius.circular(8.0),
+                    //                 child: CachedNetworkImage(
+                    //                   width: 100,
+                    //                   imageUrl:
+                    //                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/windows.png?alt=media&token=68325716-9094-4bfc-b121-67b336ab1460',
+                    //                   placeholder: (context, url) =>
+                    //                       const Center(
+                    //                           child:
+                    //                               CircularProgressIndicator()),
+                    //                   errorWidget: (context, url, error) =>
+                    //                       const Icon(Icons.error),
+                    //                   fit: BoxFit
+                    //                       .cover, // Adjust the image's fit
+                    //                 ),
+                    //               ),
+                    //               const Text(
+                    //                 'Windows OS',
+                    //                 style: TextStyle(
+                    //                     fontSize: 20,
+                    //                     fontFamily: 'SF Arch Rival Bold'),
+                    //               )
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(height: 40),
                     const Text(
                       'iOS VERSION IN DEVELOPMENT',
@@ -682,7 +710,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL(widget.playStoreUrl),
+                              onPressed: () => _launchURL(playStoreUrl),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -718,13 +746,13 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                             //       context,
                             //       '/iosinstallation',
                             //       arguments: {
-                            //         'appName': widget.appName,
-                            //         'appIcon': widget.appLogo,
-                            //         'appDownloadUrl': widget.appDownloadUrl,
+                            //         'appName': appName,
+                            //         'appIcon': appLogo,
+                            //         'appDownloadUrl': appDownloadUrl,
                             //       },
                             //     );
                             //   },
-                            //   // onPressed: () => _launchURL(widget.appStoreUrl),
+                            //   // onPressed: () => _launchURL(appStoreUrl),
                             //   child: ClipRRect(
                             //     borderRadius: BorderRadius.circular(8.0),
                             //     child: Image.asset(
@@ -746,7 +774,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL(widget.appGalleryUrl),
+                              onPressed: () => _launchURL(appGalleryUrl),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -806,7 +834,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: widget.phoneImage,
+                                  imageUrl: phoneImage,
                                   placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
@@ -825,21 +853,21 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                 children: [
                                   const SizedBox(height: 100.0),
                                   _buildFeatureRow(
-                                    widget.highlightsIcon1,
-                                    widget.highlightsTitle1,
-                                    widget.highlightsDescrition1,
+                                    highlightsIcon1,
+                                    highlightsTitle1,
+                                    highlightsDescrition1,
                                   ),
                                   const SizedBox(height: 50.0),
                                   _buildFeatureRow(
-                                    widget.highlightsIcon2,
-                                    widget.highlightsTitle2,
-                                    widget.highlightsDescrition2,
+                                    highlightsIcon2,
+                                    highlightsTitle2,
+                                    highlightsDescrition2,
                                   ),
                                   const SizedBox(height: 50.0),
                                   _buildFeatureRow(
-                                    widget.highlightsIcon3,
-                                    widget.highlightsTitle3,
-                                    widget.highlightsDescrition3,
+                                    highlightsIcon3,
+                                    highlightsTitle3,
+                                    highlightsDescrition3,
                                   ),
                                 ],
                               ),
@@ -869,7 +897,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: CachedNetworkImage(
-                          imageUrl: widget.featureImage,
+                          imageUrl: featureImage,
                           placeholder: (context, url) =>
                               const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalScrollingList extends StatefulWidget {
@@ -61,7 +62,7 @@ class _HorizontalScrollingListState extends State<HorizontalScrollingList> {
                 _stopScrolling(); // Stop scrolling when long press ends
               },
               child: IconButton(
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(CupertinoIcons.back),
                 onPressed: () {
                   _scrollController.animateTo(
                     _scrollController.offset -
@@ -81,6 +82,12 @@ class _HorizontalScrollingListState extends State<HorizontalScrollingList> {
               itemCount: widget.itemCount, // Replace with your item count
               itemBuilder: (context, index) {
                 // Replace with your item widget
+                // double? imageWidth;
+
+                // if (index == 0) {
+                //   imageWidth = MediaQuery.of(context).size.width /
+                //       2; // Set width for the first image
+                // }
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CachedNetworkImage(
@@ -105,7 +112,7 @@ class _HorizontalScrollingListState extends State<HorizontalScrollingList> {
                 _stopScrolling(); // Stop scrolling when long press ends
               },
               child: IconButton(
-                icon: const Icon(Icons.arrow_forward),
+                icon: const Icon(CupertinoIcons.forward),
                 onPressed: () {
                   _scrollController.animateTo(
                     _scrollController.offset +

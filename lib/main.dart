@@ -1,14 +1,21 @@
+import 'package:cupertino_studios/app_installation_page.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app_page.dart';
 import 'home_page.dart';
+import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const CupertinoStudiosWebsite());
+  // Initialize routes
+  final appRouter = AppRouter();
+  appRouter.defineRoutes();
 }
 
 class CupertinoStudiosWebsite extends StatelessWidget {
@@ -19,32 +26,12 @@ class CupertinoStudiosWebsite extends StatelessWidget {
     return MaterialApp(
       title: 'Cupertino Studios',
       debugShowCheckedModeBanner: false,
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == '/iosinstallation') {
-      //     // Extract the route parameters if any
-      //     final arguments = settings.arguments as Map<String, dynamic>?;
-
-      //     return MaterialPageRoute(
-      //       builder: (context) => AppInstallationPage(
-      //         appName: arguments?['appName'] ?? '',
-      //         appIcon: arguments?['appIcon'] ?? '',
-      //         appDownloadUrl: arguments?['appDownloadUrl'] ?? '',
-      //       ),
-      //     );
-      //   }
-      //   // Handle other routes if needed
-      //   return null;
-      // },
-      // routes: {
-      //   // '': (context) => const CupertinoStudiosHomePage(),
-      //   '/apppage': (context) =>  AppPage(),
-
-      //   // '/iosinstallation': (context) => const AppInstallationPage(
-      //   //       appDownloadUrl: '',
-      //   //       appName: '',
-      //   //     ),
-      //   // Add other routes as needed
-      // },
+      routes: {
+        // '': (context) => const CupertinoStudiosHomePage(),
+        '/appPage': (context) => const AppPage(),
+        '/appInstallationPage': (context) => AppInstallationPage(),
+        '/homePage': (context) => const HomePage()
+      },
       theme: ThemeData(
         fontFamily: 'SFPRODISPLAYMEDIUM',
         appBarTheme: const AppBarTheme(

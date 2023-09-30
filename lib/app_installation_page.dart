@@ -3,36 +3,12 @@ import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'app_icon_widget.dart';
+import 'app_installation_page_arguments.dart';
 import 'horizontal_scrolling_list.dart';
 
 class AppInstallationPage extends StatelessWidget {
-  final appName;
-  final bool containsAds;
-  final bool iap;
-  final installs;
-  final rating;
-  final whatsNew;
-  final dataSafety;
-  final shortDescription;
-  final longDescription;
-  final category;
-  final downloadUrl;
-  final List<String> imageUrls;
-
-  AppInstallationPage(
-      {required this.appName,
-      required this.containsAds,
-      required this.iap,
-      required this.installs,
-      required this.rating,
-      required this.whatsNew,
-      required this.dataSafety,
-      required this.shortDescription,
-      required this.longDescription,
-      required this.category,
-      required this.downloadUrl,
-      required this.imageUrls,
-      super.key});
+  AppInstallationPage({super.key});
 
   // void _launchDownloadLink() {
   //   // Replace the URL with your GitHub APK file URL
@@ -61,10 +37,27 @@ class AppInstallationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments
+        as AppInstallationPageArguments;
+    final appName = args.appName;
+    final appLogo = args.appLogo;
+    final appId = args.appId;
+    final bool containsAds = args.containsAds;
+    final bool iap = args.iap;
+    final installs = args.installs;
+    final rating = args.rating;
+    final whatsNew = args.whatsNew;
+    final dataSafety = args.dataSafety;
+    final shortDescription = args.shortDescription;
+    final longDescription = args.longDescription;
+    final category = args.category;
+    final downloadUrl = args.downloadUrl;
+    final List<String> imageUrls = args.imageUrls;
+
     return Scaffold(
       appBar: const CupertinoNavigationBar(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(200.0),
         child: Column(
           children: [
             Text(
@@ -81,7 +74,7 @@ class AppInstallationPage extends StatelessWidget {
               'Cupertino Studios',
               style: TextStyle(
                 fontSize: 13,
-                fontFamily: 'SF Arch Rival Bold',
+                // fontFamily: 'SF Arch Rival Bold',
               ),
             ),
             const SizedBox(),
@@ -106,30 +99,42 @@ class AppInstallationPage extends StatelessWidget {
             ),
             Row(
               children: [
+                AppIconWidget(
+                  imageUrl: appLogo, // Replace with your app's icon URL
+                  size: 100.0, // Specify the size you desire
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
                 Column(
                   children: [
                     Text(
                       installs,
                       style: const TextStyle(
-                          fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+                          fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     const Text(
                       'Downloads',
                       style: TextStyle(
-                          fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
+                const SizedBox(
+                  width: 15,
+                ),
                 Column(
                   children: [
-                    const Text(
-                      'Rated',
-                      style: TextStyle(
-                          fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+                    Text(
+                      'Rated for $rating',
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
                     ),
                     Text(rating),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(
@@ -142,7 +147,7 @@ class AppInstallationPage extends StatelessWidget {
                     _install(downloadUrl); // Replace with your download logic
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue, // Customize button color
+                    backgroundColor: Colors.blue, // Customize button color
                     minimumSize: const Size(200, 48), // Increase button size
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
@@ -153,31 +158,47 @@ class AppInstallationPage extends StatelessWidget {
                     'Install',
                     style: TextStyle(
                       fontSize: 20,
-                      fontFamily: 'SF Arch Rival Bold',
+                      fontWeight: FontWeight.bold,
                       color: Colors.white, // Customize button text color
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.share),
-                ),
-                const Text(
-                  'Share',
-                  style:
-                      TextStyle(fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
-                ),
+                // const SizedBox(
+                //   width: 10,
+                // ),
+                // IconButton(
+                //   onPressed: () {
+                //     final sharedLink =
+                //         '/appInstallationPage/$appId'; // Replace with the actual app ID
+                //     // AppRouter.router.navigateTo(context, sharedLink);
+                //     Share.share(
+                //       sharedLink,
+                //     );
+                //   },
+                //   icon: const Row(
+                //     children: [
+                //       Icon(
+                //         Icons.share,
+                //       ),
+                //       SizedBox(
+                //         width: 7,
+                //       ),
+                //       Text(
+                //         'Share',
+                //         style: TextStyle(
+                //             fontSize: 15, fontWeight: FontWeight.bold),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
             const Text(
-              'This app is available for some of your devices',
-              style: TextStyle(fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+              'This app is available for all your devices',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
@@ -200,11 +221,11 @@ class AppInstallationPage extends StatelessWidget {
               height: 20,
             ),
             const Text(
-              'What,s new',
+              "What's new",
               style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'SF Arch Rival Bold'),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -212,7 +233,8 @@ class AppInstallationPage extends StatelessWidget {
             Text(
               whatsNew,
               style: const TextStyle(
-                  fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+                fontSize: 15,
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -220,9 +242,9 @@ class AppInstallationPage extends StatelessWidget {
             const Text(
               'Data Safety',
               style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'SF Arch Rival Bold'),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -232,7 +254,8 @@ class AppInstallationPage extends StatelessWidget {
                 Text(
                   dataSafety,
                   style: const TextStyle(
-                      fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+                    fontSize: 15,
+                  ),
                 ),
               ]),
             ),
@@ -243,7 +266,6 @@ class AppInstallationPage extends StatelessWidget {
               'About this app',
               style: TextStyle(
                 fontSize: 30,
-                fontFamily: 'SF Arch Rival Bold',
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -251,20 +273,28 @@ class AppInstallationPage extends StatelessWidget {
               height: 20,
             ),
             Card(
-              child: Text(
-                shortDescription,
-                style: const TextStyle(
-                    fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  shortDescription,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
             Card(
-              child: Text(
-                longDescription,
-                style: const TextStyle(
-                    fontSize: 20, fontFamily: 'SF Arch Rival Bold'),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  longDescription,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
               ),
             ),
 
@@ -274,10 +304,8 @@ class AppInstallationPage extends StatelessWidget {
             Card(
               child: Text(
                 category,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'SF Arch Rival Bold',
-                ),
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
             ),
           ],
