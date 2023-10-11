@@ -56,23 +56,7 @@ class CupertinoStudiosWebsite extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
         ),
-        cupertinoOverrideTheme: const CupertinoThemeData(
-          // primaryColor: CupertinoColors.white,
-          // primaryContrastingColor: CupertinoColors.activeBlue,
-          textTheme: CupertinoTextThemeData(
-            navTitleTextStyle: TextStyle(
-              fontFamily: 'SF Arch Rival Bold',
-              fontSize: 20, // Adjust the font size as needed
-              fontWeight:
-                  FontWeight.bold, // Customize the font weight if desired
-              // Other text style properties
-            ),
-            textStyle: TextStyle(
-              color: CupertinoColors.black,
-              fontFamily: 'SFPRODISPLAYMEDIUM', // Set the San Francisco font
-            ),
-          ),
-        ),
+        
       ),
       home: const HomePage(),
     );
