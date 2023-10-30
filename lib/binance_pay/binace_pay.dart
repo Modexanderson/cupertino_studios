@@ -1,12 +1,12 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:binance_pay/binance_pay.dart';
-import 'package:cupertino_studios/models/.env.dart';
+import '../models/.env';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class BinancePayState extends ChangeNotifier {
