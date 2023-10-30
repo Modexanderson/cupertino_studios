@@ -1,18 +1,29 @@
-import 'package:cupertino_studios/app_installation_page.dart';
+import 'package:cupertino_studios/screens/app_installation_page.dart';
+import 'package:cupertino_studios/screens/support_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:provider/provider.dart';
 
-import 'app_page.dart';
-import 'home_page.dart';
+import 'binance_pay/binace_pay.dart';
+import 'screens/app_page.dart';
+import 'screens/home_page.dart';
 import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      'pk_test_51KG6iSIW6bocJfDHUrX1L7vvYcieuQx8tNcIOL4zVLFC39FWffWL7H3Osg4bfKD82qj93JC9tdoZH9BO9crAP9Sy00mYT4Y9UN'; // Replace with your publishable key
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(const CupertinoStudiosWebsite());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => BinancePayState(),
+      child: const CupertinoStudiosWebsite(),
+    ),
+    );
   // Initialize routes
   final appRouter = AppRouter();
   appRouter.defineRoutes();
@@ -30,6 +41,7 @@ class CupertinoStudiosWebsite extends StatelessWidget {
         // '': (context) => const CupertinoStudiosHomePage(),
         '/appPage': (context) => const AppPage(),
         '/appInstallationPage': (context) => AppInstallationPage(),
+        '/supportPage': (context) => const SupportPage(),
         '/homePage': (context) => const HomePage()
       },
       theme: ThemeData(

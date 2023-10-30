@@ -3,9 +3,9 @@ import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'app_icon_widget.dart';
-import 'app_installation_page_arguments.dart';
-import 'horizontal_scrolling_list.dart';
+import '../widgets/app_icon_widget.dart';
+import '../models/app_installation_page_arguments.dart';
+import '../widgets/horizontal_scrolling_list.dart';
 
 class AppInstallationPage extends StatelessWidget {
   AppInstallationPage({super.key});

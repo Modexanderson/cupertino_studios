@@ -4,8 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+// import 'package:binance_pay/binance_pay.dart';
 
-import 'app_page_argument.dart';
+import '../models/app_page_argument.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,6 +25,43 @@ class HomePage extends StatelessWidget {
       throw 'Could not launch email';
     }
   }
+  //  Future<void> makePayment(BuildContext context, String amount) async {
+  //   BinancePay pay = BinancePay(
+  //     apiKey: apiKey,
+  //     apiSecretKey: apiSecret,
+  //   );
+
+  //   String tradeNo = generateMerchantTradeNo();
+
+  //   OrderResponse response = await pay.createOrder(
+  //     body: RequestBody(
+  //       merchantTradeNo: tradeNo,
+  //       orderAmount: amount,
+  //       currency: 'BUSD',
+  //       goodsType: '01',
+  //       goodsCategory: '1000',
+  //       referenceGoodsId: 'referenceGoodsId',
+  //       goodsName: 'donation',
+  //       goodsDetail: 'donation',
+  //     ),
+  //   );
+
+  //   debugPrint(response.toString());
+
+  //   QueryResponse queryResponse = await pay.queryOrder(
+  //     merchantTradeNo: tradeNo,
+  //     prepayId: response.data!.prepayId,
+  //   );
+
+  //   debugPrint(queryResponse.status);
+
+  //   CloseResponse closeResponse = await pay.closeOrder(
+  //     merchantTradeNo: tradeNo,
+  //   );
+
+  //   debugPrint(closeResponse.status);
+  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +109,12 @@ class HomePage extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                          )
+                          ),
+                          TextButton(
+                onPressed: () {
+                  Navigator.pushNamed( context, '/supportPage');
+                },
+                child: const Text('Support')),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -452,7 +495,7 @@ the Nigeria and other country's grading system.
                                   featureImage:
                                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5',
                                   androidUrl:
-                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=ae262dbf-72fc-4796-93e0-cb64cc87a38f',
+                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=366c97ee-6aa2-4cd0-9773-aca8e1640c6a&_gl=1*4l95ye*_ga*MTc5NzU1MTIyMC4xNjk0MjQwMTk1*_ga_CW55HF8NVT*MTY5NzgxNDI5Mi4xMy4xLjE2OTc4MTU1MzYuNjAuMC4w',
                                   iosUrl: '',
                                   linuxUrl: '',
                                   macUrl: '',
@@ -824,7 +867,7 @@ the Nigeria and other country's grading system.
                                   featureImage:
                                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5',
                                   androidUrl:
-                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=ae262dbf-72fc-4796-93e0-cb64cc87a38f',
+                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=366c97ee-6aa2-4cd0-9773-aca8e1640c6a&_gl=1*4l95ye*_ga*MTc5NzU1MTIyMC4xNjk0MjQwMTk1*_ga_CW55HF8NVT*MTY5NzgxNDI5Mi4xMy4xLjE2OTc4MTU1MzYuNjAuMC4w',
                                   iosUrl: '',
                                   linuxUrl: '',
                                   macUrl: '',

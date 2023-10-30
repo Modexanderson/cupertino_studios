@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'app_installation_page_arguments.dart';
-import 'app_page_argument.dart';
+import '../models/app_installation_page_arguments.dart';
+import '../models/app_page_argument.dart';
 
 class AppPage extends StatefulWidget {
   // final String title;
