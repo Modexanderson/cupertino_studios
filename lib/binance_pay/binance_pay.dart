@@ -79,140 +79,185 @@ class BinancePayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BinancePayState>(
-      builder: (context, state, _) {
-        return AlertDialog(
-          title: const Text('Select Amount'),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.5,
-            child: SingleChildScrollView(
-              child: Column(
-                // mainAxisSize: MainAxisSize.min,
-                children: [
-                  GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 60.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: (170 / 70),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Consumer<BinancePayState>(
+          builder: (context, state, _) {
+            return AlertDialog(
+              title: const Text('Select Amount'),
+              content: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: SingleChildScrollView(
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
                     children: [
-                      for (var amount in [5, 10, 15, 20, 50, 100])
-                        GestureDetector(
-                          onTap: () {
-                            state.updateSelectedAmount(amount.toDouble());
-                            state.customAmountController.clear();
-                          },
-                          child: SizedBox(
-                            width: 150,
-                            height: 60,
-                            child: Card(
-                              color: state.selectedAmount == amount.toDouble()
-                                  ? Colors.blue
-                                  : Colors.white,
+                      constraints.maxWidth < 900 ? 
+                      GridView.count(
+                        shrinkWrap: true,
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                        childAspectRatio: (70 / 70),
+                        children: [
+                          for (var amount in [5, 10, 15, 20, 50, 100])
+                            GestureDetector(
+                              onTap: () {
+                                state.updateSelectedAmount(amount.toDouble());
+                                state.customAmountController.clear();
+                              },
                               child: SizedBox(
-                                height: 50,
-                                child: Center(
-                                  child: Text(
-                                    '\$ $amount',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: state.selectedAmount ==
-                                              amount.toDouble()
-                                          ? Colors.white
-                                          : Colors.black,
+                                width: 150,
+                                height: 60,
+                                child: Card(
+                                  color: state.selectedAmount == amount.toDouble()
+                                      ? Colors.blue
+                                      : Colors.white,
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: Center(
+                                      child: Text(
+                                        '\$ $amount',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: state.selectedAmount ==
+                                                  amount.toDouble()
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  CupertinoTextField(
-                    controller: state.customAmountController,
-                    keyboardType: TextInputType.number,
-                    placeholder: 'Enter Amount',
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d+\.?\d{0,2}')),
-                    ],
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.black,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                    placeholderStyle: const TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.grey,
-                    ),
-                    prefix: const Padding(
-                      padding: EdgeInsets.only(left: 16.0, right: 8.0),
-                      child: Text(
-                        '\$',
-                        style: TextStyle(
+                        ],
+                      ) :
+                      GridView.count(
+                        shrinkWrap: true,
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 60.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: (170 / 70),
+                        children: [
+                          for (var amount in [5, 10, 15, 20, 50, 100])
+                            GestureDetector(
+                              onTap: () {
+                                state.updateSelectedAmount(amount.toDouble());
+                                state.customAmountController.clear();
+                              },
+                              child: SizedBox(
+                                width: 150,
+                                height: 60,
+                                child: Card(
+                                  color: state.selectedAmount == amount.toDouble()
+                                      ? Colors.blue
+                                      : Colors.white,
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: Center(
+                                      child: Text(
+                                        '\$ $amount',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: state.selectedAmount ==
+                                                  amount.toDouble()
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      CupertinoTextField(
+                        controller: state.customAmountController,
+                        keyboardType: TextInputType.number,
+                        placeholder: 'Enter Amount',
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d+\.?\d{0,2}')),
+                        ],
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black,
                         ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                        placeholderStyle: const TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.grey,
+                        ),
+                        prefix: const Padding(
+                          padding: EdgeInsets.only(left: 16.0, right: 8.0),
+                          child: Text(
+                            '\$',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          state.updateSelectedAmount(0.0);
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              actions: <Widget>[
+                Row(
+                  children: [
+                    Expanded(
+                      child: CupertinoDialogAction(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ),
-                    onTap: () {
-                      state.updateSelectedAmount(0.0);
-                    },
-                  )
-                ],
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            Row(
-              children: [
-                Expanded(
-                  child: CupertinoDialogAction(
-                    child: const Text('Cancel'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: CupertinoDialogAction(
-                    child: const Text('Confirm'),
-                    onPressed: () {
-                      var amount = 0.0;
-                      if (state.customAmountController.text.isEmpty) {
-                        amount = state.selectedAmount;
-                      } else {
-                        amount = double.tryParse(
-                                state.customAmountController.text) ??
-                            0.0;
-                        state.updateSelectedAmount(
-                            amount); // Deselect the amount in the card
-                      }
-                      Navigator.of(context).pop();
-                      createBinancePayOrder(amount);
+                    Expanded(
+                      child: CupertinoDialogAction(
+                        child: const Text('Confirm'),
+                        onPressed: () {
+                          var amount = 0.0;
+                          if (state.customAmountController.text.isEmpty) {
+                            amount = state.selectedAmount;
+                          } else {
+                            amount = double.tryParse(
+                                    state.customAmountController.text) ??
+                                0.0;
+                            state.updateSelectedAmount(
+                                amount); // Deselect the amount in the card
+                          }
+                          Navigator.of(context).pop();
+                          createBinancePayOrder(amount);
 
-                      // var amount = state.customAmountController.text.isEmpty
-                      //     ? state.selectedAmount
-                      //     : double.tryParse(state.customAmountController.text) ?? 0.0;
-                      // Navigator.of(context).pop();
-                      // createBinancePayOrder(amount);
+                          // var amount = state.customAmountController.text.isEmpty
+                          //     ? state.selectedAmount
+                          //     : double.tryParse(state.customAmountController.text) ?? 0.0;
+                          // Navigator.of(context).pop();
+                          // createBinancePayOrder(amount);
 
-                      print(state.selectedAmount);
-                    },
-                  ),
+                          print(state.selectedAmount);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         );
-      },
+      }
     );
   }
 }
