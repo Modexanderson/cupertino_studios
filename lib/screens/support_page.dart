@@ -1,17 +1,17 @@
-import 'package:cupertino_studios/binance_pay/binace_pay.dart';
+import 'package:cupertino_studios/binance_pay/binance_pay.dart';
+import 'package:cupertino_studios/stripe_pay/stripe_pay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../stripe/stripe_payment.dart';
 
 class SupportPage extends StatelessWidget {
   const SupportPage({super.key});
   
-  void showPaymentDialog(BuildContext context) {
+  void showPaymentDialog(BuildContext context, dynamic widget) {
     showCupertinoDialog(
     context: context,
     builder: (BuildContext context) {
-      return BinancePayWidget();
+      return widget;
     });}
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,14 @@ class SupportPage extends StatelessWidget {
         'name': 'Card Payment',
         'image': 'assets/icons/stripe_method.svg',
         'onTap': () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const StipePayment()));
+          showPaymentDialog(context,  StripePayWidget());
         }
       },
-      {'name': 'Crypto Payment', 'image': 'assets/icons/0xprocessing_method.svg', 'onTap': {}},
-      {'name': 'Payeer', 'image': 'assets/icons/payeer_method.svg', 'onTap': {}},
-      {'name': 'Enot', 'image': 'assets/icons/enot_method.svg', 'onTap': {}},
+      // {'name': 'Crypto Payment', 'image': 'assets/icons/0xprocessing_method.svg', 'onTap': {}},
+      // {'name': 'Payeer', 'image': 'assets/icons/payeer_method.svg', 'onTap': {}},
+      // {'name': 'Enot', 'image': 'assets/icons/enot_method.svg', 'onTap': {}},
       {'name': 'Binance Pay', 'image': 'assets/icons/binancePay_method.svg', 'onTap': () {
-        showPaymentDialog(context);
+        showPaymentDialog(context, BinancePayWidget());
       }},
       // Add more payment options as needed
     ];
@@ -38,22 +37,22 @@ class SupportPage extends StatelessWidget {
         return Scaffold(
           appBar: const CupertinoNavigationBar(
             middle: Text(
-              'Support',
+              'Choose Payment Method',
               style: TextStyle(fontSize: 30, color: Colors.black),
             ),
           ),
           body: SingleChildScrollView(
               child: Column(
             children: [
-              const Text('Support Funds'),
+              const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(40.0),
                 child: GridView.count(
                   shrinkWrap: true,
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 20.0,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 60.0,
                   mainAxisSpacing: 20.0,
-                  childAspectRatio: (166 / 94),
+                  childAspectRatio: (170 / 70),
                   children: List.generate(paymentOptions.length, (index) {
                     return GestureDetector(
                       onTap: () {

@@ -395,7 +395,7 @@ Download offline songs from popular sites: music download sites is included in t
                                     appLogo:
                                         'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator.png?alt=media&token=430c34d6-f8f6-48af-b423-e1ccb72729e8',
                                     shortDescription:
-                                        'The high qualityGrade Calculator',
+                                        'The high quality Grade Calculator',
                                     appImage:
                                         'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
                                     appName: 'GPA Calculator',
@@ -495,7 +495,7 @@ the Nigeria and other country's grading system.
                                   featureImage:
                                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5',
                                   androidUrl:
-                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=366c97ee-6aa2-4cd0-9773-aca8e1640c6a&_gl=1*4l95ye*_ga*MTc5NzU1MTIyMC4xNjk0MjQwMTk1*_ga_CW55HF8NVT*MTY5NzgxNDI5Mi4xMy4xLjE2OTc4MTU1MzYuNjAuMC4w',
+                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=8a3b3117-e833-41d7-b444-82fd8ab5bf9c',
                                   iosUrl: '',
                                   linuxUrl: '',
                                   macUrl: '',
@@ -867,7 +867,7 @@ the Nigeria and other country's grading system.
                                   featureImage:
                                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5',
                                   androidUrl:
-                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=366c97ee-6aa2-4cd0-9773-aca8e1640c6a&_gl=1*4l95ye*_ga*MTc5NzU1MTIyMC4xNjk0MjQwMTk1*_ga_CW55HF8NVT*MTY5NzgxNDI5Mi4xMy4xLjE2OTc4MTU1MzYuNjAuMC4w',
+                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=8a3b3117-e833-41d7-b444-82fd8ab5bf9c',
                                   iosUrl: '',
                                   linuxUrl: '',
                                   macUrl: '',
