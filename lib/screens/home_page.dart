@@ -62,7 +62,6 @@ class HomePage extends StatelessWidget {
   //   debugPrint(closeResponse.status);
   // }
 
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -110,11 +109,11 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          TextButton(
-                onPressed: () {
-                  Navigator.pushNamed( context, '/supportPage');
-                },
-                child: const Text('Support')),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       Navigator.pushNamed(context, '/supportPage');
+                    //     },
+                    //     child: const Text('Support')),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -478,7 +477,7 @@ the Nigeria and other country's grading system.
                                   phoneImage:
                                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FEmotion%20or%20Mood-Based%20Prompts.png?alt=media&token=6f8bf915-59ed-4326-b8d4-62765233a1a0',
                                   privacyPolicyUrl:
-                                      'https://www.privacypolicies.com/live/919bba91-173c-4699-8191-c0781afc0ee9',
+                                      'https://www.privacypolicies.com/live/6913039d-ae2e-4e47-9937-de2ea5fc269d',
                                   highlightsIcon1: CupertinoIcons.graph_circle,
                                   highlightsTitle1:
                                       'Real Time Image Generation',
@@ -850,7 +849,7 @@ the Nigeria and other country's grading system.
                                   phoneImage:
                                       'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FEmotion%20or%20Mood-Based%20Prompts.png?alt=media&token=6f8bf915-59ed-4326-b8d4-62765233a1a0',
                                   privacyPolicyUrl:
-                                      'https://www.privacypolicies.com/live/919bba91-173c-4699-8191-c0781afc0ee9',
+                                      'https://www.privacypolicies.com/live/6913039d-ae2e-4e47-9937-de2ea5fc269d',
                                   highlightsIcon1: CupertinoIcons.graph_circle,
                                   highlightsTitle1:
                                       'Real Time Image Generation',

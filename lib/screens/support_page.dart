@@ -29,7 +29,7 @@ class SupportPage extends StatelessWidget {
       // {'name': 'Payeer', 'image': 'assets/icons/payeer_method.svg', 'onTap': {}},
       // {'name': 'Enot', 'image': 'assets/icons/enot_method.svg', 'onTap': {}},
       {'name': 'Binance Pay', 'image': 'assets/icons/binancePay_method.svg', 'onTap': () {
-        showPaymentDialog(context, BinancePayWidget());
+        showPaymentDialog(context, binancePayWidget());
       }},
       // Add more payment options as needed
     ];

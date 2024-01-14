@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:html' as html;
 // import 'dart:convert';
 // import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -19,9 +20,6 @@ class BinancePayState extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-class BinancePayWidget extends StatelessWidget {
-  BinancePayWidget({super.key});
 
   void createBinancePayOrder(double amount) async {
     BinancePay pay = BinancePay(
@@ -49,16 +47,17 @@ class BinancePayWidget extends StatelessWidget {
       String universalLink = response.data!.universalUrl;
 
       // Open the QR code link in the default browser or external app
-      if (await canLaunch(universalLink)) {
-        await launch(universalLink);
-        print(universalLink);
-      } else {
-        print('Could not launch $universalLink');
-      }
+      html.window.open(universalLink, '_blank');
+    //   if (await canLaunchUrl( Uri.parse(universalLink))) {
+    //     await launchUrl(Uri.parse(universalLink));
+    //     print(universalLink);
+    //   } else {
+    //     print('Could not launch $universalLink');
+    //   }
 
-      // Redirect users to the checkoutURL or display the QR code
-    } else {
-      print('Error creating Binance Pay order: ${response.errorMessage}');
+    //   // Redirect users to the checkoutURL or display the QR code
+    // } else {
+    //   print('Error creating Binance Pay order: ${response.errorMessage}');
     }
 
     ///query the order
@@ -77,8 +76,7 @@ class BinancePayWidget extends StatelessWidget {
     debugPrint(closeResponse.status);
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget binancePayWidget() {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Consumer<BinancePayState>(
@@ -238,8 +236,8 @@ class BinancePayWidget extends StatelessWidget {
                             state.updateSelectedAmount(
                                 amount); // Deselect the amount in the card
                           }
-                          Navigator.of(context).pop();
                           createBinancePayOrder(amount);
+                          Navigator.of(context).pop();
 
                           // var amount = state.customAmountController.text.isEmpty
                           //     ? state.selectedAmount
@@ -260,4 +258,3 @@ class BinancePayWidget extends StatelessWidget {
       }
     );
   }
-}
