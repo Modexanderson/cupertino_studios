@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'app_description_page.dart';
 // import 'package:binance_pay/binance_pay.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,8 +18,8 @@ class HomePage extends StatelessWidget {
       },
     );
 
-    if (await canLaunch(emailUri.toString())) {
-      await launch(emailUri.toString());
+    if (await canLaunchUrl(Uri.parse(emailUri.toString()))) {
+      await launchUrl(Uri.parse(emailUri.toString()));
     } else {
       throw 'Could not launch email';
     }
@@ -302,7 +301,6 @@ class HomePage extends StatelessWidget {
                         children: [
                           const SizedBox(height: 20),
                           PricingCard(
-                           
                             title: 'Basic Package',
                             description:
                                 'Perfect for small businesses and startups',
@@ -316,7 +314,6 @@ class HomePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           PricingCard(
-                           
                             title: 'Pro Package',
                             description: 'Great for growing businesses',
                             price: '\$799 - \$1,499',
@@ -329,7 +326,6 @@ class HomePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           PricingCard(
-                           
                             title: 'Enterprise Package',
                             description:
                                 'Tailored solutions for large enterprises',
@@ -347,7 +343,6 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           PricingCard(
-                            
                             title: 'Basic Package',
                             description:
                                 'Perfect for small businesses and startups',
@@ -360,7 +355,6 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                           PricingCard(
-                            
                             title: 'Pro Package',
                             description: 'Great for growing businesses',
                             price: '\$799 - \$1,499',
@@ -372,7 +366,6 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                           PricingCard(
-                            
                             title: 'Enterprise Package',
                             description:
                                 'Tailored solutions for large enterprises',
@@ -477,7 +470,8 @@ class PricingCard extends StatelessWidget {
   final String price;
   final List<String> features;
 
-  PricingCard({super.key, 
+  PricingCard({
+    super.key,
     required this.title,
     required this.description,
     required this.price,
@@ -493,11 +487,11 @@ class PricingCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => AppDescriptionPage(title: title),
-            ),
-          );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => AppDescriptionPage(title: title),
+          //   ),
+          // );
         },
         child: Container(
           padding: const EdgeInsets.all(20),
@@ -557,7 +551,7 @@ class FAQSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Card(
-            child:  Text(
+            child: Text(
               'Frequently Asked Questions',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
