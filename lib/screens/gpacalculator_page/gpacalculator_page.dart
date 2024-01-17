@@ -1,91 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../models/app_installation_page_arguments.dart';
-import '../models/app_page_argument.dart';
+import '../../widgets/build_feature_row.dart';
+import 'package:flutter/cupertino.dart';
 
-class AppPage extends StatefulWidget {
-  // final String title;
-  // final String appLogo;
-  // final String appImage;
-  // final String appName;
-  // final IconData highlightsIcon1;
-  // final IconData highlightsIcon2;
-  // final IconData highlightsIcon3;
-  // final String highlightsTitle1;
-  // final String highlightsTitle2;
-  // final String highlightsTitle3;
-  // final String highlightsDescrition1;
-  // final String highlightsDescrition2;
-  // final String highlightsDescrition3;
-  // final String phoneImage;
-  // final String privacyPolicyUrl;
-  // final String shortDescription;
-  // final String playStoreUrl;
-  // final String appGalleryUrl;
-  // final String? appStoreUrl;
-  // final String featureImage;
-  // final bool containsAds;
-  // final bool iap;
-  // final List<String> imageUrls;
-  // final androidUrl;
-  // final iosUrl;
-  // final linuxUrl;
-  // final macUrl;
-  // final windowsUrl;
-  // final installs;
-  // final rating;
-  // final whatsNew;
-  // final dataSafety;
-  // final shortIDescription;
-  // final longDescription;
-  // final category;
-  const AppPage({
-    // required this.title,
-    // required this.appLogo,
-    // required this.appImage,
-    // required this.appName,
-    // required this.highlightsIcon1,
-    // required this.highlightsIcon2,
-    // required this.highlightsIcon3,
-    // required this.highlightsTitle1,
-    // required this.highlightsTitle2,
-    // required this.highlightsTitle3,
-    // required this.highlightsDescrition1,
-    // required this.highlightsDescrition2,
-    // required this.highlightsDescrition3,
-    // required this.phoneImage,
-    // required this.privacyPolicyUrl,
-    // required this.shortDescription,
-    // required this.playStoreUrl,
-    // required this.appGalleryUrl,
-    // this.appStoreUrl,
-    // required this.featureImage,
-    // required this.containsAds,
-    // required this.iap,
-    // required this.imageUrls,
-    // required this.androidUrl,
-    // required this.iosUrl,
-    // required this.linuxUrl,
-    // required this.macUrl,
-    // required this.windowsUrl,
-    // this.installs,
-    // this.rating,
-    // this.whatsNew,
-    // this.dataSafety,
-    // this.shortIDescription,
-    // this.longDescription,
-    // this.category,
-    super.key,
-  });
+class GPACalculatorPage extends StatefulWidget {
+  const GPACalculatorPage({super.key});
 
   @override
-  State<AppPage> createState() => _AppPageState();
+  State<GPACalculatorPage> createState() => _GPACalculatorPageState();
 }
 
-class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
+class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTickerProviderStateMixin {
+
   AnimationController? _animationController;
 
   Animation<double>? _fadeAnimation;
@@ -161,48 +89,12 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments as AppPageArguments;
-    final title = args.title;
-    final appLogo = args.appLogo;
-    final appImage = args.appImage;
-    final appName = args.appName;
-    final highlightsIcon1 = args.highlightsIcon1;
-    final highlightsIcon2 = args.highlightsIcon2;
-    final highlightsIcon3 = args.highlightsIcon3;
-    final highlightsTitle1 = args.highlightsTitle1;
-    final highlightsTitle2 = args.highlightsTitle2;
-    final highlightsTitle3 = args.highlightsTitle3;
-    final highlightsDescrition1 = args.highlightsDescrition1;
-    final highlightsDescrition2 = args.highlightsDescrition2;
-    final highlightsDescrition3 = args.highlightsDescrition3;
-    final phoneImage = args.phoneImage;
-    final privacyPolicyUrl = args.privacyPolicyUrl;
-    final shortDescription = args.shortDescription;
-    final playStoreUrl = args.playStoreUrl;
-    final appGalleryUrl = args.appGalleryUrl;
-    final appStoreUrl = args.appStoreUrl;
-    final featureImage = args.featureImage;
-    final containsAds = args.containsAds;
-    final iap = args.iap;
-    final imageUrls = args.imageUrls;
-    final androidUrl = args.androidUrl;
-    final iosUrl = args.iosUrl;
-    final linuxUrl = args.linuxUrl;
-    final macUrl = args.macUrl;
-    final windowsUrl = args.windowsUrl;
-    final installs = args.installs;
-    final rating = args.rating;
-    final whatsNew = args.whatsNew;
-    final dataSafety = args.dataSafety;
-    final shortIDescription = args.shortDescription;
-    final longDescription = args.longDescription;
-    final category = args.category;
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        appBar: CupertinoNavigationBar(
+        appBar: const CupertinoNavigationBar(
           middle: Text(
-            title,
-            style: const TextStyle(fontSize: 30, color: Colors.black),
+            'GPA Calculator',
+            style:  TextStyle(fontSize: 30, color: Colors.black),
           ),
         ),
         body: SingleChildScrollView(
@@ -229,7 +121,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: CachedNetworkImage(
-                                    imageUrl: appLogo,
+                                    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator.png?alt=media&token=430c34d6-f8f6-48af-b423-e1ccb72729e8',
                                     placeholder: (context, url) => const Center(
                                         child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
@@ -269,7 +161,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                     onPressed: () {
                                       launchUrl(
                                         Uri.parse(
-                                          privacyPolicyUrl,
+                                          'https://www.privacypolicies.com/live/919bba91-173c-4699-8191-c0781afc0ee9',
                                         ),
                                       );
                                     },
@@ -292,7 +184,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                   SlideTransition(
                                     position: _textSlideAnimation!,
                                     child: Text(
-                                      shortDescription,
+                                      'The high quality Grade Calculator',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize:
@@ -312,7 +204,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: CachedNetworkImage(
-                                          imageUrl: appImage,
+                                          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
                                           placeholder: (context, url) =>
                                               const Center(
                                                   child:
@@ -337,7 +229,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                     child: SlideTransition(
                                       position: _textSlideAnimation!,
                                       child: Text(
-                                        shortDescription,
+                                        'The high quality Grade Calculator',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: MediaQuery.of(context)
@@ -358,7 +250,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: CachedNetworkImage(
-                                            imageUrl: appImage,
+                                            imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
                                             placeholder: (context, url) =>
                                                 const Center(
                                                     child:
@@ -397,23 +289,8 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                             CupertinoButton(
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, '/appInstallationPage',
-                                    arguments: AppInstallationPageArguments(
-                                      appName: appName,
-                                      appLogo: appLogo,
-                                      appId: 'com.$appName.android',
-                                      containsAds: containsAds,
-                                      iap: iap,
-                                      installs: installs,
-                                      rating: rating,
-                                      whatsNew: whatsNew,
-                                      dataSafety: dataSafety,
-                                      shortDescription: shortDescription,
-                                      longDescription: longDescription,
-                                      category: category,
-                                      downloadUrl: androidUrl,
-                                      imageUrls: imageUrls,
-                                    ));
+                                    context, '/gpacalculator/android',
+                                    );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -457,7 +334,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                     //         CupertinoButton(
                     //           onPressed: () {
                     //             Navigator.pushNamed(
-                    //                 context, '/appInstallationPage',
+                    //                 context, '/gpacalculator/iOS',
                     //                 arguments: AppInstallationPageArguments(
                     //                   appName: appName,
                     //                   appLogo: appLogo,
@@ -517,7 +394,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                     //         CupertinoButton(
                     //           onPressed: () {
                     //             Navigator.pushNamed(
-                    //                 context, '/appInstallationPage',
+                    //                 context, '/gpacalculator/linux',
                     //                 arguments: AppInstallationPageArguments(
                     //                   appName: appName,
                     //                   appLogo: appLogo,
@@ -577,7 +454,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                     //         CupertinoButton(
                     //           onPressed: () {
                     //             Navigator.pushNamed(
-                    //                 context, '/appInstallationPage',
+                    //                 context, '/gpacalculator/macOS',
                     //                 arguments: AppInstallationPageArguments(
                     //                   appName: appName,
                     //                   appLogo: appLogo,
@@ -637,7 +514,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                     //         CupertinoButton(
                     //           onPressed: () {
                     //             Navigator.pushNamed(
-                    //                 context, '/appInstallationPage',
+                    //                 context, '/gpacalculator/windows',
                     //                 arguments: AppInstallationPageArguments(
                     //                   appName: appName,
                     //                   appLogo: appLogo,
@@ -710,7 +587,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL(playStoreUrl),
+                              onPressed: () => _launchURL('https://play.google.com/store/apps/details?id=com.anderson.gpa_calculator'),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -774,7 +651,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL(appGalleryUrl),
+                              onPressed: () => _launchURL('https://appgallery.huawei.com/app/C106977151'),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -834,7 +711,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: phoneImage,
+                                  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943',
                                   placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
@@ -852,22 +729,22 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const SizedBox(height: 100.0),
-                                  _buildFeatureRow(
-                                    highlightsIcon1,
-                                    highlightsTitle1,
-                                    highlightsDescrition1,
+                                  buildFeatureRow(
+                                    CupertinoIcons.graph_circle,
+                                    'Real Time Grading',
+                                    'Calculate your grades on the go.',
                                   ),
                                   const SizedBox(height: 50.0),
-                                  _buildFeatureRow(
-                                    highlightsIcon2,
-                                    highlightsTitle2,
-                                    highlightsDescrition2,
+                                  buildFeatureRow(
+                                    CupertinoIcons.headphones,
+                                    'Get Support',
+                                    'Get Support from Admin.',
                                   ),
                                   const SizedBox(height: 50.0),
-                                  _buildFeatureRow(
-                                    highlightsIcon3,
-                                    highlightsTitle3,
-                                    highlightsDescrition3,
+                                  buildFeatureRow(
+                                    CupertinoIcons.conversation_bubble,
+                                    'Request Features',
+                                    'Request more features.',
                                   ),
                                 ],
                               ),
@@ -897,7 +774,7 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: CachedNetworkImage(
-                          imageUrl: featureImage,
+                          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943',
                           placeholder: (context, url) =>
                               const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>
@@ -915,37 +792,6 @@ class _AppPageState extends State<AppPage> with SingleTickerProviderStateMixin {
             ],
           ),
         ),
-      );
-    });
-  }
-
-  Widget _buildFeatureRow(IconData iconData, String title, String description) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      return Row(
-        children: [
-          Icon(iconData, size: 25, color: Colors.black),
-          const SizedBox(width: 8.0),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: constraints.maxWidth > 900 ? 20 : 16,
-                  ),
-                ),
-                const SizedBox(height: 4.0),
-                Text(
-                  description,
-                  style: const TextStyle(overflow: TextOverflow.clip),
-                ),
-              ],
-            ),
-          ),
-        ],
       );
     });
   }
