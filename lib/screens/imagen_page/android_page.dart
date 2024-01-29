@@ -194,10 +194,19 @@ class ImagenAndroidPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
-                'Bug Fixes',
-                style: TextStyle(
-                  fontSize: 15,
+              Card(
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    '''
+Fixed issue causing app crashes during certain interactions.
+Redesigned home screen for a more intuitive navigation.
+Stay tuned for upcoming features like real-time images an prompt sharing!
+                                  ''',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -300,8 +309,7 @@ All rights reserved.
               const Card(
                 child: Text(
                   'Tools',
-                  style: TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

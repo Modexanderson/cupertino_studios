@@ -26,16 +26,11 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'binance_pay/binance_pay.dart';
-import 'screens/app_description_page.dart';
 import 'screens/audify_page/audify_page.dart';
 import 'screens/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Stripe.publishableKey = stripePublishableKey;
-  // Stripe.merchantIdentifier = 'merchant.flutter.stripe.test';
-  // Stripe.urlScheme = 'flutterstripe';
-  // await Stripe.instance.applySettings();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
@@ -102,8 +97,9 @@ class CupertinoStudiosWebsite extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'SFPRODISPLAYMEDIUM',
         appBarTheme: const AppBarTheme(
-          iconTheme:
-              IconThemeData(color: Colors.blue), // Customize app bar icon color
+          iconTheme: IconThemeData(
+            color: Colors.blue,
+          ), // Customize app bar icon color
           backgroundColor: Colors.white,
 
           titleTextStyle: TextStyle(
@@ -112,6 +108,9 @@ class CupertinoStudiosWebsite extends StatelessWidget {
             fontWeight: FontWeight.bold, // Customize the font weight if desired
             // Other text style properties
           ),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue, // Replace with your desired color
         ),
 
         scaffoldBackgroundColor:

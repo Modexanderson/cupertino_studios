@@ -193,10 +193,15 @@ class AudifyAndroidPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
-                'Bug Fixes',
-                style: TextStyle(
-                  fontSize: 15,
+               Card(
+                child:  Container(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    'Bug Fixes',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(

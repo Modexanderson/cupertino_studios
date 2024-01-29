@@ -571,6 +571,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.w300),
                     ),
+                    const SizedBox(height: 40),
                     Text(
                       'Stores Listed!',
                       style: CupertinoTheme.of(context)

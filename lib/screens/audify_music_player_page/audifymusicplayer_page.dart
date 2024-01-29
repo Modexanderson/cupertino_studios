@@ -183,7 +183,7 @@ class _AudifyMusicPlayerPageState extends State<AudifyMusicPlayerPage> with Sing
                                   SlideTransition(
                                     position: _textSlideAnimation!,
                                     child: Text(
-                                      'The high quality Music Player',
+                                      'The High Quality Music Player',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize:
@@ -228,7 +228,7 @@ class _AudifyMusicPlayerPageState extends State<AudifyMusicPlayerPage> with Sing
                                     child: SlideTransition(
                                       position: _textSlideAnimation!,
                                       child: Text(
-                                        'The high quality Music Player',
+                                        'The High Quality Music Player',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: MediaQuery.of(context)
@@ -571,6 +571,7 @@ class _AudifyMusicPlayerPageState extends State<AudifyMusicPlayerPage> with Sing
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.w300),
                     ),
+                    const SizedBox(height: 40),
                     Text(
                       'Stores Listed!',
                       style: CupertinoTheme.of(context)

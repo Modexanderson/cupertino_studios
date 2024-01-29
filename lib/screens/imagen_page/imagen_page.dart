@@ -570,6 +570,7 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.w300),
                     ),
+                    const SizedBox(height: 40),
                     Text(
                       'Stores Listed!',
                       style: CupertinoTheme.of(context)
