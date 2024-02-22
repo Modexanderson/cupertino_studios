@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cupertino_studios/screens/audify_music_player_page/android_page.dart';
 import 'package:cupertino_studios/screens/audify_music_player_page/audifymusicplayer_page.dart';
 import 'package:cupertino_studios/screens/audify_music_player_page/ios_page.dart';
@@ -20,6 +22,9 @@ import 'package:cupertino_studios/screens/imagen_page/imagen_page.dart';
 import 'package:cupertino_studios/screens/imagen_page/ios_page.dart';
 import 'package:cupertino_studios/screens/imagen_page/linux_page.dart';
 import 'package:cupertino_studios/screens/imagen_page/macos_page.dart';
+import 'package:shelf/shelf.dart' as shelf;
+import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_static/shelf_static.dart';
 import 'package:cupertino_studios/screens/imagen_page/windows_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +34,15 @@ import 'screens/home_page.dart';
 void main() async {
   runApp( const CupertinoStudiosWebsite(),
   );
+  // Set up the shelf handler
+  var handler = const shelf.Pipeline()
+      .addMiddleware(shelf.logRequests())
+      .addHandler(createStaticHandler('web', defaultDocument: 'index.html'));
+
+  // Serve static files (including sitemap.xml and robots.txt)
+  var server = await io.serve(handler, InternetAddress.anyIPv4, 8080);
+
+  print('Serving at http://${server.address.host}:${server.port}');
 }
 
 class CupertinoStudiosWebsite extends StatelessWidget {

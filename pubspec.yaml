@@ -40,6 +40,8 @@ dependencies:
   flutter_svg: ^2.0.9
   mailer: ^6.0.1
   share_plus: ^7.1.0
+  shelf: ^1.4.1
+  shelf_static: ^1.1.2
   url_launcher: ^6.1.11
   provider: ^6.0.5
   webview_flutter: ^4.4.1
