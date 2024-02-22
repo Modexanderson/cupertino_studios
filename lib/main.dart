@@ -22,26 +22,12 @@ import 'package:cupertino_studios/screens/imagen_page/linux_page.dart';
 import 'package:cupertino_studios/screens/imagen_page/macos_page.dart';
 import 'package:cupertino_studios/screens/imagen_page/windows_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
-import 'binance_pay/binance_pay.dart';
 import 'screens/audify_page/audify_page.dart';
 import 'screens/home_page.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => BinancePayState()),
-        // ChangeNotifierProvider(create: (context) => StripePayState()),
-        // Add other providers as needed
-      ],
-      child: const CupertinoStudiosWebsite(),
-    ),
+  runApp( const CupertinoStudiosWebsite(),
   );
 }
 

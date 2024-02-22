@@ -14,14 +14,13 @@ class ImagenAndroidPage extends StatelessWidget {
 
   final imageUrls = [
     "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FA%20close-up%20view%20of%20petal%20image.png?alt=media&token=7655da56-63a5-4d99-b78c-9423873582a8",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FArtwork%20Image%20Description.png?alt=media&token=ece0a75f-4e38-4554-8ab2-de6c83a7fab1",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCyberpunk%20Urban%20Setting.png?alt=media&token=3d9b7031-7f19-43df-b794-a1ea0ba86eb5",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FEmotion%20or%20Mood-Based%20Prompts.png?alt=media&token=6f8bf915-59ed-4326-b8d4-62765233a1a0",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FExperience%20Magical%20Image%20Generarion.png?alt=media&token=0d158b54-4572-4a65-92be-bcbf2f7de35c",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FHistorical%20or%20Cultural%20References%20(1).png?alt=media&token=d611818e-f84e-42c1-a962-24b968a11625",
-    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FReference%20Image%20Using%20Artist%20Name.png?alt=media&token=20e4531c-0fe6-4da2-94c7-893e353b6442",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Fcraft%20masterpiece.png?alt=media&token=dffdf2a2-bc7f-4b1d-afdc-cb8d70747502",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Felevate%20preset.png?alt=media&token=20305d57-9328-41ae-8f29-521e4c5b3cb1",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Ftrack%20image%20story.png?alt=media&token=2cd33cd7-8b53-4908-8d37-42f3691747a6",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Fdefine%20resolution.png?alt=media&token=fa75259b-25ec-44ae-ba25-8b161626af12",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Funleash%20style.png?alt=media&token=d9d42965-bc49-4a14-bcb6-b9374656048c",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Fshare%20or%20erase%2C%20dark.png?alt=media&token=b166a116-2f26-4a91-a6fd-f89b729f693f",
+    "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2Fbackup%20masterpiece.png?alt=media&token=c7f0e470-3e4f-4711-9ab3-04801d9dd5b8",
   ];
 
   // void _launchDownloadLink() {
@@ -110,7 +109,7 @@ class ImagenAndroidPage extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        '100+',
+                        '1k+',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
@@ -199,7 +198,10 @@ class ImagenAndroidPage extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   child: const Text(
                     '''
-Fixed issue causing app crashes during certain interactions.
+Added image history feature.
+Added share or delete image options.
+Added image history backup options and auto backup.
+FIne tuned image creation function.
 Redesigned home screen for a more intuitive navigation.
 Stay tuned for upcoming features like real-time images an prompt sharing!
                                   ''',
@@ -249,7 +251,7 @@ Stay tuned for upcoming features like real-time images an prompt sharing!
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'Powerful AI Image Generator!',
+                    'Basic AI Image App!',
                     style: TextStyle(
                       fontSize: 15,
                     ),
@@ -271,11 +273,23 @@ AI-Powered Image Generation: Imagen AI employs advanced deep learning algorithms
 
 Customizable Art Styles: Imagen AI offers a wide range of artistic styles and filters to suit your preferences. From classic oil painting to modern abstract art, you can choose from an extensive library of styles to give your images a unique and personalized touch.
 
+Track Image History: Effortlessly trace your creative journey by exploring the history of your generated images. Revisit and appreciate the evolution of your artistic endeavors.
+
 Intuitive Interface: Our user-friendly interface is designed to make the creative process effortless. Whether you're a beginner or an experienced designer, you'll find it easy to navigate the app and create captivating images.
 
 Real-Time Preview: Imagen AI provides real-time previews of your edits, allowing you to see the changes as you make them. This feature ensures that you have full control over the final result and can make adjustments on the fly.
 
 Choose Resolution: Imagen AI allows you to select your desired resolution, ensuring that your generated images are tailored to your specific needs, whether it's for web use, printing, or social media.
+
+Image History Backup: Safeguard your precious creations locally with our robust backup feature. Enjoy the peace of mind knowing that your image history is securely stored for future reference.
+
+Share or Erase Image: Seamlessly manage your generated images. Choose to share your masterpieces with the world or erase them with a simple tap, giving you complete control over your gallery.
+
+Localize Feature: Immerse yourself in a personalized experience with our localization feature. Tailor the app to your preferences and language, enhancing your creative process.
+
+Theme Selection Feature: Express your unique style with our theme selection feature. Customize the app's appearance to match your mood, creating a visually pleasing environment for your creative exploration.
+
+Auto Backup Option: Never worry about losing your creations. Enable the auto backup option to automatically secure your image history, ensuring that every stroke of creativity is preserved.
 
 Privacy and Security: We prioritize your privacy and ensure that your images and data are secure. Imagen AI does not store or use your data for any purpose other than generating and editing images.
 

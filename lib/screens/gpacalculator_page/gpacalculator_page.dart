@@ -184,7 +184,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                                   SlideTransition(
                                     position: _textSlideAnimation!,
                                     child: Text(
-                                      'The high quality Grade Calculator',
+                                      'The High Quality Grade Calculator',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize:
@@ -229,7 +229,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                                     child: SlideTransition(
                                       position: _textSlideAnimation!,
                                       child: Text(
-                                        'The high quality Grade Calculator',
+                                        'The High Quality Grade Calculator',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: MediaQuery.of(context)
