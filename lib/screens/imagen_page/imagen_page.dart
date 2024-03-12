@@ -12,7 +12,8 @@ class ImagenPage extends StatefulWidget {
   State<ImagenPage> createState() => _ImagenPageState();
 }
 
-class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateMixin {
+class _ImagenPageState extends State<ImagenPage>
+    with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
 
   Animation<double>? _fadeAnimation;
@@ -77,7 +78,7 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
     _animationController!.dispose();
     super.dispose();
   }
-  
+
   Future<void> _launchURL(String url) async {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
@@ -93,7 +94,7 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
         appBar: const CupertinoNavigationBar(
           middle: Text(
             'Imagen',
-            style:  TextStyle(fontSize: 30, color: Colors.black),
+            style: TextStyle(fontSize: 30, color: Colors.black),
           ),
         ),
         body: SingleChildScrollView(
@@ -120,7 +121,8 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: CachedNetworkImage(
-                                    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen_black.png?alt=media&token=85def552-0002-40a9-b917-274cc0b704d5',
+                                    imageUrl:
+                                        'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen_black.png?alt=media&token=85def552-0002-40a9-b917-274cc0b704d5',
                                     placeholder: (context, url) => const Center(
                                         child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
@@ -165,6 +167,12 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                                       );
                                     },
                                     child: const Text('Privacy Policy')),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/imagensupport');
+                                    },
+                                    child: const Text('Support')),
                               ]),
                         )
                       ],
@@ -203,7 +211,8 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: CachedNetworkImage(
-                                          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d',
+                                          imageUrl:
+                                              'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d',
                                           placeholder: (context, url) =>
                                               const Center(
                                                   child:
@@ -249,7 +258,8 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: CachedNetworkImage(
-                                            imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d',
+                                            imageUrl:
+                                                'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FCamp%20Family.png?alt=media&token=aba6b809-baff-4a98-af5b-36b52c1e928d',
                                             placeholder: (context, url) =>
                                                 const Center(
                                                     child:
@@ -288,8 +298,9 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                             CupertinoButton(
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, '/imagen/android',
-                                    );
+                                  context,
+                                  '/imagen/android',
+                                );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -651,7 +662,8 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL('https://appgallery.huawei.com/app/C110058357'),
+                              onPressed: () => _launchURL(
+                                  'https://appgallery.huawei.com/app/C110058357'),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -711,7 +723,8 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FEmotion%20or%20Mood-Based%20Prompts.png?alt=media&token=6f8bf915-59ed-4326-b8d4-62765233a1a0',
+                                  imageUrl:
+                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FEmotion%20or%20Mood-Based%20Prompts.png?alt=media&token=6f8bf915-59ed-4326-b8d4-62765233a1a0',
                                   placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
@@ -774,7 +787,8 @@ class _ImagenPageState extends State<ImagenPage> with SingleTickerProviderStateM
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: CachedNetworkImage(
-                          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5',
+                          imageUrl:
+                              'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen-feature-graphics.png?alt=media&token=39b551ea-4572-4334-b726-533e0b5a3fa5',
                           placeholder: (context, url) =>
                               const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>

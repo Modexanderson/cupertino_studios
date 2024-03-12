@@ -30,6 +30,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/audify_page/audify_page.dart';
 import 'screens/home_page.dart';
+import 'screens/imagen_page/imagen_support.dart';
 
 void main() async {
   runApp( const CupertinoStudiosWebsite(),
@@ -90,8 +91,9 @@ class CupertinoStudiosWebsite extends StatelessWidget {
         '/imagen/linux': (context) => ImagenLinuxPage(),
         '/imagen/macOS': (context) => ImagenmacOSPage(),
         '/imagen/windows': (context) => ImagenWindowsPage(),
+        '/imagensupport': (context) =>  const ImagenSupport(),
 
-        // '/supportPage': (context) => const SupportPage(),
+        // '/support': (context) =>  const SupportPage(),
         '/homePage': (context) => const HomePage()
       },
       theme: ThemeData(

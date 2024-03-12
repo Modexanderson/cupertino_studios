@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
                           ),
                     // TextButton(
                     //     onPressed: () {
-                    //       Navigator.pushNamed(context, '/supportPage');
+                    //       Navigator.pushNamed(context, '/support');
                     //     },
                     //     child: const Text('Support')),
                   ],
