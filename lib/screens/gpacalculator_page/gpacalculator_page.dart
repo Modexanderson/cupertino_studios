@@ -12,8 +12,8 @@ class GPACalculatorPage extends StatefulWidget {
   State<GPACalculatorPage> createState() => _GPACalculatorPageState();
 }
 
-class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTickerProviderStateMixin {
-
+class _GPACalculatorPageState extends State<GPACalculatorPage>
+    with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
 
   Animation<double>? _fadeAnimation;
@@ -94,7 +94,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
         appBar: const CupertinoNavigationBar(
           middle: Text(
             'GPA Calculator',
-            style:  TextStyle(fontSize: 30, color: Colors.black),
+            style: TextStyle(fontSize: 30, color: Colors.black),
           ),
         ),
         body: SingleChildScrollView(
@@ -121,7 +121,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: CachedNetworkImage(
-                                    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator.png?alt=media&token=430c34d6-f8f6-48af-b423-e1ccb72729e8',
+                                    imageUrl:
+                                        'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator.png?alt=media&token=430c34d6-f8f6-48af-b423-e1ccb72729e8',
                                     placeholder: (context, url) => const Center(
                                         child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
@@ -204,7 +205,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         child: CachedNetworkImage(
-                                          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
+                                          imageUrl:
+                                              'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
                                           placeholder: (context, url) =>
                                               const Center(
                                                   child:
@@ -250,7 +252,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: CachedNetworkImage(
-                                            imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
+                                            imageUrl:
+                                                'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpacalculator-grades.png?alt=media&token=bcad79f4-a962-4fe2-87a6-ad48d9367e52',
                                             placeholder: (context, url) =>
                                                 const Center(
                                                     child:
@@ -289,8 +292,9 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                             CupertinoButton(
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, '/gpacalculator/android',
-                                    );
+                                  context,
+                                  '/gpacalculator/android',
+                                );
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -313,6 +317,52 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                                   ),
                                   const Text(
                                     'Android',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'SF Arch Rival Bold'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CupertinoButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/gpacalculator/iOS',
+                                );
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: CachedNetworkImage(
+                                      width: 100,
+                                      imageUrl:
+                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/apple.png?alt=media&token=5fe90103-f05c-4fab-8991-8c5f9c1a082d',
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      fit: BoxFit
+                                          .cover, // Adjust the image's fit
+                                    ),
+                                  ),
+                                  const Text(
+                                    'iOS',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: 'SF Arch Rival Bold'),
@@ -564,13 +614,13 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                     //     ),
                     //   ),
                     // ),
-                    const SizedBox(height: 40),
-                    const Text(
-                      'iOS VERSION IN DEVELOPMENT',
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w300),
-                    ),
+                    // const SizedBox(height: 40),
+                    // const Text(
+                    //   'iOS VERSION IN DEVELOPMENT',
+                    //   style: TextStyle(
+                    //       fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.w300),
+                    // ),
                     const SizedBox(height: 40),
                     Text(
                       'Stores Listed!',
@@ -588,7 +638,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL('https://play.google.com/store/apps/details?id=com.anderson.gpa_calculator'),
+                              onPressed: () => _launchURL(
+                                  'https://play.google.com/store/apps/details?id=com.anderson.gpa_calculator'),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -652,7 +703,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              onPressed: () => _launchURL('https://appgallery.huawei.com/app/C106977151'),
+                              onPressed: () => _launchURL(
+                                  'https://appgallery.huawei.com/app/C106977151'),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -686,12 +738,54 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                       ),
                     ),
                     const SizedBox(height: 40),
-                    const Text(
-                      'iOS VERSION IN DEVELOPMENT',
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w300),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CupertinoButton(
+                              onPressed: () => _launchURL(
+                                  'https://apps.apple.com/us/app/grade-calculator-college/id6479562256'),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: CachedNetworkImage(
+                                      width: 100,
+                                      imageUrl:
+                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/app_store.png?alt=media&token=107d5501-cbe6-4d42-b417-8367f9760d3c',
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      fit: BoxFit
+                                          .cover, // Adjust the image's fit
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Apple App Store',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'SF Arch Rival Bold'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
+                    // const SizedBox(height: 40),
+                    // const Text(
+                    //   'iOS VERSION IN DEVELOPMENT',
+                    //   style: TextStyle(
+                    //       fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.w300),
+                    // ),
                     const SizedBox(height: 100),
                     Text(
                       'Highlights',
@@ -712,7 +806,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943',
+                                  imageUrl:
+                                      'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943',
                                   placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
@@ -775,7 +870,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> with SingleTicker
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: CachedNetworkImage(
-                          imageUrl: 'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943',
+                          imageUrl:
+                              'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/gpa-calculator-files%2Fgpa-calculator-feature.png?alt=media&token=26e4cdfc-9232-474b-9ee7-6e8c5d912943',
                           placeholder: (context, url) =>
                               const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>

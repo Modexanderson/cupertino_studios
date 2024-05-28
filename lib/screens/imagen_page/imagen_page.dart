@@ -334,6 +334,52 @@ class _ImagenPageState extends State<ImagenPage>
                         ),
                       ),
                     ),
+                    const SizedBox(height: 40),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CupertinoButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/imagen/iOS',
+                                );
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: CachedNetworkImage(
+                                      width: 100,
+                                      imageUrl:
+                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/apple.png?alt=media&token=5fe90103-f05c-4fab-8991-8c5f9c1a082d',
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      fit: BoxFit
+                                          .cover, // Adjust the image's fit
+                                    ),
+                                  ),
+                                  const Text(
+                                    'iOS',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'SF Arch Rival Bold'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     // const SizedBox(height: 40),
                     // Card(
                     //   child: Padding(
@@ -574,13 +620,13 @@ class _ImagenPageState extends State<ImagenPage>
                     //     ),
                     //   ),
                     // ),
-                    const SizedBox(height: 40),
-                    const Text(
-                      'iOS VERSION IN DEVELOPMENT',
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w300),
-                    ),
+                    // const SizedBox(height: 40),
+                    // const Text(
+                    //   'iOS VERSION IN DEVELOPMENT',
+                    //   style: TextStyle(
+                    //       fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.w300),
+                    // ),
                     const SizedBox(height: 40),
                     Text(
                       'Stores Listed!',
@@ -697,12 +743,54 @@ class _ImagenPageState extends State<ImagenPage>
                       ),
                     ),
                     const SizedBox(height: 40),
-                    const Text(
-                      'iOS VERSION IN DEVELOPMENT',
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w300),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CupertinoButton(
+                              onPressed: () => _launchURL(
+                                  'https://apps.apple.com/app/imagen-ai/id6478289950'),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: CachedNetworkImage(
+                                      width: 100,
+                                      imageUrl:
+                                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/app_store.png?alt=media&token=107d5501-cbe6-4d42-b417-8367f9760d3c',
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      fit: BoxFit
+                                          .cover, // Adjust the image's fit
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Apple App Store',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'SF Arch Rival Bold'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
+                    // const SizedBox(height: 40),
+                    // const Text(
+                    //   'iOS VERSION IN DEVELOPMENT',
+                    //   style: TextStyle(
+                    //       fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.w300),
+                    // ),
                     const SizedBox(height: 100),
                     Text(
                       'Highlights',

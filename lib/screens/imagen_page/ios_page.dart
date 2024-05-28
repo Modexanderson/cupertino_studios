@@ -2,6 +2,7 @@ import 'dart:js';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/app_icon_widget.dart';
 import '../../widgets/horizontal_scrolling_list.dart';
@@ -9,7 +10,6 @@ import '../../widgets/horizontal_scrolling_list.dart';
 class ImageniOSPage extends StatelessWidget {
   ImageniOSPage({super.key});
 
-  
   final containsAds = false;
   final iap = true;
 
@@ -25,7 +25,6 @@ class ImageniOSPage extends StatelessWidget {
     "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fscreenshots%2FReference%20Image%20Using%20Artist%20Name.png?alt=media&token=20e4531c-0fe6-4da2-94c7-893e353b6442",
   ];
 
-
   // void _launchDownloadLink() {
   //   // Replace the URL with your GitHub APK file URL
   //   final url = downloadUrl;
@@ -36,19 +35,12 @@ class ImageniOSPage extends StatelessWidget {
   // }
   // final storageUrl =
   //     "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/audify-files%2Fapp-release.apk?alt=media&token=486c9314-0308-40fa-981d-7f38b4d4843e";
-  void _install(String url) {
-    // Use JavaScript to trigger the download
-    final jsCode = '''
-      const link = document.createElement('a');
-      link.href = '$url';
-      link.download = 'your-apk-filename.apk'; // Replace with the desired filename
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    ''';
-
-    // Execute the JavaScript code
-    context.callMethod('eval', [jsCode]);
+  Future<void> _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -99,8 +91,8 @@ class ImageniOSPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-               const Row(
-                children:  [
+              const Row(
+                children: [
                   AppIconWidget(
                     imageUrl:
                         'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen_black.png?alt=media&token=85def552-0002-40a9-b917-274cc0b704d5', // Replace with your app's icon URL
@@ -147,8 +139,8 @@ class ImageniOSPage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      _install(
-                          'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/imagen-files%2Fimagen.apk?alt=media&token=8a3b3117-e833-41d7-b444-82fd8ab5bf9c'); // Replace with your download logic
+                      _launchURL(
+                          'https://apps.apple.com/app/imagen-ai/id6478289950');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue, // Customize button color
@@ -256,7 +248,7 @@ class ImageniOSPage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    ''' 
+                    '''
 The Imagen AI Image Generator App is a cutting-edge, user-friendly application that harnesses the power of artificial intelligence to revolutionize the way you create and customize images. Whether you're a professional graphic designer, a content creator, or just someone looking to add a creative touch to your photos, Imagen AI is the perfect tool to bring your imagination to life.
 
 Key Features:
@@ -302,8 +294,7 @@ All rights reserved.
               const Card(
                 child: Text(
                   'Tools',
-                  style: TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

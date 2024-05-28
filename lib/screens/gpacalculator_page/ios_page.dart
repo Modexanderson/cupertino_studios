@@ -2,6 +2,7 @@ import 'dart:js';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/app_icon_widget.dart';
 import '../../widgets/horizontal_scrolling_list.dart';
@@ -28,19 +29,12 @@ class GPACalculatoriOSPage extends StatelessWidget {
   // }
   // final storageUrl =
   //     "https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/audify-files%2Fapp-release.apk?alt=media&token=486c9314-0308-40fa-981d-7f38b4d4843e";
-  void _install(String url) {
-    // Use JavaScript to trigger the download
-    final jsCode = '''
-      const link = document.createElement('a');
-      link.href = '$url';
-      link.download = 'your-apk-filename.apk'; // Replace with the desired filename
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    ''';
-
-    // Execute the JavaScript code
-    context.callMethod('eval', [jsCode]);
+  Future<void> _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -91,7 +85,7 @@ class GPACalculatoriOSPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 children: [
                   AppIconWidget(
                     imageUrl:
@@ -139,7 +133,8 @@ class GPACalculatoriOSPage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      _install(''); // Replace with your download logic
+                      _launchURL(
+                          'https://apps.apple.com/us/app/grade-calculator-college/id6479562256'); // Replace with your download logic
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue, // Customize button color
@@ -247,7 +242,7 @@ class GPACalculatoriOSPage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    ''' 
+                    '''
 GPA Calculator is a mobile application that helps students in the 
 University, colleges and other institution to calculate their grade 
 point average managing all the formula complexity for students using 
