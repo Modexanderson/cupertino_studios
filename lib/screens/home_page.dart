@@ -108,6 +108,11 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/support');
+                        },
+                        child: const Text('Support')),
                     // TextButton(
                     //     onPressed: () {
                     //       Navigator.pushNamed(context, '/support');
@@ -232,10 +237,24 @@ class HomePage extends StatelessWidget {
                               );
                             },
                           ),
+                          const SizedBox(height: 20),
+                          AppCard(
+                            appName: 'Chat AI',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/chatai',
+                              );
+                            },
+                          ),
                         ],
                       )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    : Wrap(
+                        spacing: 16.0, // Space between items horizontally
+                        runSpacing: 16.0, // Space between rows
+                        alignment:
+                            WrapAlignment.center, // Align items in the center
                         children: [
                           AppCard(
                             appName: 'Audify',
@@ -274,6 +293,16 @@ class HomePage extends StatelessWidget {
                               Navigator.pushNamed(
                                 context,
                                 '/imagen',
+                              );
+                            },
+                          ),
+                          AppCard(
+                            appName: 'Chat AI',
+                            platform: 'Android, iOS',
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/chatai',
                               );
                             },
                           ),

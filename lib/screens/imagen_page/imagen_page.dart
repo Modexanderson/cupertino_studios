@@ -167,12 +167,6 @@ class _ImagenPageState extends State<ImagenPage>
                                       );
                                     },
                                     child: const Text('Privacy Policy')),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/imagensupport');
-                                    },
-                                    child: const Text('Support')),
                               ]),
                         )
                       ],

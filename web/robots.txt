@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://cupertinostudios.online/sitemap.xml
+Sitemap: https://cupertinostudios.github.io/sitemap.xml
