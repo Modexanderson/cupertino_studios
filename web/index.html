@@ -14,7 +14,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-
+    <base href="/" />
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta name="description" content="Cross Platform Apps." />
@@ -61,8 +61,9 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      var serviceWorkerVersion = null;
+      var serviceWorkerVersion = "{{flutter_service_worker_version}}";
     </script>
+
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
   </head>
@@ -98,6 +99,11 @@
     }
   </style>
   <body>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
     <div class="loading">
       <div class="loader"></div>
     </div>

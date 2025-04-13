@@ -1,632 +1,1068 @@
 import 'dart:ui';
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../app.dart';
+import '../services/firebase_service.dart';
+import '../services/auth_service.dart';
+import '../models/app_model.dart';
+import '../models/website_content_model.dart';
+import '../utils/constants.dart';
+import '../utils/responsive_layout.dart';
+import '../widgets/app_card.dart';
+import '../widgets/pricing_card.dart';
+import '../widgets/faq_item.dart';
+import '../widgets/animated_section.dart';
+import '../theme/app_theme.dart';
 
-// import 'package:binance_pay/binance_pay.dart';
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  void sendEmail() async {
-    final Uri emailUri = Uri(
-      scheme: 'mailto',
-      path: 'cupertinostudios@gmail.com',
-      queryParameters: {
-        'body': 'Hello, ',
-      },
-    );
-
-    if (await canLaunchUrl(Uri.parse(emailUri.toString()))) {
-      await launchUrl(Uri.parse(emailUri.toString()));
-    } else {
-      throw 'Could not launch email';
-    }
-  }
-  //  Future<void> makePayment(BuildContext context, String amount) async {
-  //   BinancePay pay = BinancePay(
-  //     apiKey: apiKey,
-  //     apiSecretKey: apiSecret,
-  //   );
-
-  //   String tradeNo = generateMerchantTradeNo();
-
-  //   OrderResponse response = await pay.createOrder(
-  //     body: RequestBody(
-  //       merchantTradeNo: tradeNo,
-  //       orderAmount: amount,
-  //       currency: 'BUSD',
-  //       goodsType: '01',
-  //       goodsCategory: '1000',
-  //       referenceGoodsId: 'referenceGoodsId',
-  //       goodsName: 'donation',
-  //       goodsDetail: 'donation',
-  //     ),
-  //   );
-
-  //   debugPrint(response.toString());
-
-  //   QueryResponse queryResponse = await pay.queryOrder(
-  //     merchantTradeNo: tradeNo,
-  //     prepayId: response.data!.prepayId,
-  //   );
-
-  //   debugPrint(queryResponse.status);
-
-  //   CloseResponse closeResponse = await pay.closeOrder(
-  //     merchantTradeNo: tradeNo,
-  //   );
-
-  //   debugPrint(closeResponse.status);
-  // }
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    ColorFiltered(
-                      colorFilter: const ColorFilter.mode(
-                          CupertinoColors.black, BlendMode.srcIn),
-                      child: Image.asset(
-                        'icons/logo-no-background.png',
-                        width: MediaQuery.of(context).size.width * 0.09,
-                        // height: 100,
-
-                        fit: BoxFit.contain,
-                        // alignment: Alignment.topCenter,
-                      ),
-                    ),
-                    constraints.maxWidth < 900
-                        ? const Expanded(
-                            child: Text(
-                              'Welcome to Cupertino Studios',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        : const Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 123.0),
-                              child: Text(
-                                'Welcome to Cupertino Studios',
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/support');
-                        },
-                        child: const Text('Support')),
-                    // TextButton(
-                    //     onPressed: () {
-                    //       Navigator.pushNamed(context, '/support');
-                    //     },
-                    //     child: const Text('Support')),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                const Card(
-                  child: Text(
-                    'We build beautiful and powerful mobile apps.',
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  alignment: Alignment.center,
-                  child: Card(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Stack(
-                        children: [
-                          ImageFiltered(
-                            imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  'https://firebasestorage.googleapis.com/v0/b/cupertino-studios-website.appspot.com/o/home-screen-image.jpg?alt=media&token=bdf46aa0-6c06-4ac9-8cb3-ce5f67dc0413',
-                              placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              fit: BoxFit.cover, // Adjust the image's fit
-                            ),
-                          ),
-                          Positioned.fill(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                // width: 800,
-                                child: Text(
-                                  '"High-quality mobile apps are more than just lines of code. They are seamless experiences, crafted with precision and care, that delight users and solve their everyday challenges."',
-                                  style: TextStyle(
-                                    fontSize:
-                                        constraints.maxWidth < 700 ? 16 : 25,
-                                    color: Colors.blueGrey,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  child: const Text('Contact Us'),
-                  onPressed: () {
-                    sendEmail();
-                  },
-                ),
-                const SizedBox(height: 20),
-                Card(
-                  child: Text(
-                    'Our Apps',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .navTitleTextStyle
-                        .copyWith(fontSize: 20.0),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                constraints.maxWidth < 900
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          AppCard(
-                            appName: 'Audify',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/audify',
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          AppCard(
-                            appName: 'Audify Music Player',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/audifymusicplayer',
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          AppCard(
-                            appName: 'GPA Calculator',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/gpacalculator',
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          AppCard(
-                            appName: 'Imagen',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/imagen',
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          AppCard(
-                            appName: 'Chat AI',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/chatai',
-                              );
-                            },
-                          ),
-                        ],
-                      )
-                    : Wrap(
-                        spacing: 16.0, // Space between items horizontally
-                        runSpacing: 16.0, // Space between rows
-                        alignment:
-                            WrapAlignment.center, // Align items in the center
-                        children: [
-                          AppCard(
-                            appName: 'Audify',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/audify',
-                              );
-                            },
-                          ),
-                          AppCard(
-                            appName: 'Audify Music Player',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/audifymusicplayer',
-                              );
-                            },
-                          ),
-                          AppCard(
-                            appName: 'GPA Calculator',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/gpacalculator',
-                              );
-                            },
-                          ),
-                          AppCard(
-                            appName: 'Imagen',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/imagen',
-                              );
-                            },
-                          ),
-                          AppCard(
-                            appName: 'Chat AI',
-                            platform: 'Android, iOS',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/chatai',
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Card(
-                  child: Text(
-                    'Our App Development Pricing',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .navTitleTextStyle
-                        .copyWith(fontSize: 20.0),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                constraints.maxWidth < 900
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 20),
-                          PricingCard(
-                            title: 'Basic Package',
-                            description:
-                                'Perfect for small businesses and startups',
-                            price: '\$299 - \$799',
-                            features: const [
-                              'Up to 5 pages',
-                              'Basic UI/UX design',
-                              '1-2 app integrations',
-                              'Limited support',
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          PricingCard(
-                            title: 'Pro Package',
-                            description: 'Great for growing businesses',
-                            price: '\$799 - \$1,499',
-                            features: const [
-                              'Up to 10 pages',
-                              'Custom UI/UX design',
-                              '3-5 app integrations',
-                              'Priority support',
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          PricingCard(
-                            title: 'Enterprise Package',
-                            description:
-                                'Tailored solutions for large enterprises',
-                            price: '\$1,500+',
-                            features: const [
-                              'Custom number of pages',
-                              'Highly polished UI/UX design',
-                              'Advanced app integrations',
-                              '24/7 premium support',
-                            ],
-                          ),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          PricingCard(
-                            title: 'Basic Package',
-                            description:
-                                'Perfect for small businesses and startups',
-                            price: '\$299 - \$799',
-                            features: const [
-                              'Up to 5 pages',
-                              'Basic UI/UX design',
-                              '1-2 app integrations',
-                              'Limited support',
-                            ],
-                          ),
-                          PricingCard(
-                            title: 'Pro Package',
-                            description: 'Great for growing businesses',
-                            price: '\$799 - \$1,499',
-                            features: const [
-                              'Up to 10 pages',
-                              'Custom UI/UX design',
-                              '3-5 app integrations',
-                              'Priority support',
-                            ],
-                          ),
-                          PricingCard(
-                            title: 'Enterprise Package',
-                            description:
-                                'Tailored solutions for large enterprises',
-                            price: '\$1,500+',
-                            features: const [
-                              'Custom number of pages',
-                              'Highly polished UI/UX design',
-                              'Advanced app integrations',
-                              '24/7 premium support',
-                            ],
-                          ),
-                        ],
-                      ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const FAQSection(),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  color: Colors.grey[
-                      200], // Set the desired background color for the footer
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          '© 2023 Cupertino Studios. All rights reserved.', // Replace with your company name and year
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            overflow: TextOverflow.clip,
-                            color: Colors.black54, // Set the desired text color
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
-    });
-  }
-}
-
-class AppCard extends StatelessWidget {
-  final String appName;
-  final String platform;
-  final VoidCallback onPressed;
-
-  const AppCard(
-      {super.key,
-      required this.appName,
-      required this.platform,
-      required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          width: 300,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                appName,
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    overflow: TextOverflow.clip),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Platform: $platform',
-                style:
-                    const TextStyle(fontSize: 14, overflow: TextOverflow.clip),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PricingCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String price;
-  final List<String> features;
-
-  PricingCard({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
-    required this.title,
-    required this.description,
-    required this.price,
-    required this.features,
   });
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _isLoading = true;
+  WebsiteContentModel? _websiteContent;
+  List<AppModel> _apps = [];
+  bool _isAdmin = false;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadData() async {
+    final firebaseService =
+        Provider.of<FirebaseService>(context, listen: false);
+    final authService = Provider.of<AuthService>(context, listen: false);
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Load website content
+      final websiteContent = await firebaseService.getWebsiteContent();
+
+      // Load apps
+      final apps = await firebaseService.getApps();
+
+      // Check if current user is admin
+      final isAdmin = await authService.isAdmin();
+
+      if (mounted) {
+        setState(() {
+          _websiteContent = websiteContent;
+          _apps = apps;
+          _isAdmin = isAdmin;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Error loading data: $e');
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  void _sendEmail() async {
+    final contactEmail =
+        _websiteContent?.contactEmail ?? 'cupertinostudios@gmail.com';
+
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: contactEmail,
+      queryParameters: {
+        'subject': 'Inquiry from Website',
+        'body': 'Hello Cupertino Studios,\n\n',
+      },
+    );
+
+    try {
+      await launchUrl(Uri.parse(emailUri.toString()));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not launch email client')),
+      );
+    }
+  }
+
+  void _navigateToAdminPanel() {
+    context.go('/admin/login');
+  }
+
+  void _scrollToSection(String section) {
+    // Create a map to store section keys
+    final Map<String, double> sectionOffsets = {
+      'features': 600, // Approximate offset for features section
+      'apps': 1200, // Approximate offset for apps section
+      'pricing': 1800, // Approximate offset for pricing section
+      'faq': 2400, // Approximate offset for FAQ section
+      'contact': 3000, // Approximate offset for contact section
+    };
+
+    // Check if the section exists in our map
+    if (sectionOffsets.containsKey(section)) {
+      _scrollController.animateTo(
+        sectionOffsets[section]!,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Scaffold(
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                // App Bar
+                _buildAppBar(isDark),
+
+                // Hero Section
+                SliverToBoxAdapter(
+                  child: _buildHeroSection(isDark),
+                ),
+
+                // Features Section
+                SliverToBoxAdapter(
+                  child: AnimatedSection(
+                    child: _buildFeaturesSection(isDark),
+                  ),
+                ),
+
+                // Apps Showcase
+                SliverToBoxAdapter(
+                  child: AnimatedSection(
+                    child: _buildAppsShowcase(isDark),
+                  ),
+                ),
+
+                // Pricing Section
+                SliverToBoxAdapter(
+                  child: AnimatedSection(
+                    child: _buildPricingSection(isDark),
+                  ),
+                ),
+
+                // FAQ Section
+                SliverToBoxAdapter(
+                  child: AnimatedSection(
+                    child: _buildFAQSection(isDark),
+                  ),
+                ),
+
+                // Contact Section
+                SliverToBoxAdapter(
+                  child: AnimatedSection(
+                    child: _buildContactSection(isDark),
+                  ),
+                ),
+
+                // Footer
+                SliverToBoxAdapter(
+                  child: _buildFooter(isDark),
+                ),
+              ],
+            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _scrollController.animateTo(
+          0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        ),
+        tooltip: 'Back to top',
+        child: const Icon(Icons.arrow_upward),
       ),
-      child: InkWell(
-        onTap: () {
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) => AppDescriptionPage(title: title),
-          //   ),
-          // );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          width: 300,
+    );
+  }
+
+  Widget _buildAppBar(bool isDark) {
+    return SliverAppBar(
+      floating: true,
+      pinned: true,
+      expandedHeight: 70,
+      backgroundColor: isDark
+          ? AppTheme.getThemeColor(context, Colors.white, Colors.black)
+          : Colors.white,
+      elevation: 4,
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: false,
+        titlePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/icons/logo-no-background.png',
+              height: 30,
+            ),
+            const SizedBox(width: 12),
+            Text(
+              'Cupertino Studios',
+              style: TextStyle(
+                color: isDark ? Colors.white : Colors.black87,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        // Navigation Links (only visible on larger screens)
+        ResponsiveLayout(
+          mobile: Container(),
+          tablet: _buildNavLinks(isDark),
+          desktop: _buildNavLinks(isDark),
+        ),
+
+        // Theme Toggle Button
+        IconButton(
+          icon: Icon(
+            isDark ? Icons.light_mode : Icons.dark_mode,
+            color: isDark ? Colors.white : Colors.black87,
+          ),
+          onPressed: () => App.updateTheme(context),
+          tooltip: isDark ? 'Switch to light mode' : 'Switch to dark mode',
+        ),
+
+        // Admin Button (if user is admin)
+        // if (_isAdmin)
+        IconButton(
+          icon: Icon(
+            Icons.admin_panel_settings,
+            color: isDark ? Colors.white : Colors.black87,
+          ),
+          onPressed: _navigateToAdminPanel,
+          tooltip: 'Admin Panel',
+        ),
+
+        // Menu Button (only visible on mobile)
+        ResponsiveLayout(
+          mobile: IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+            onPressed: () {
+              // Show drawer or bottom sheet with navigation options
+              Scaffold.of(context).openEndDrawer();
+            },
+          ),
+          tablet: Container(),
+          desktop: Container(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNavLinks(bool isDark) {
+    return Row(
+      children: [
+        TextButton(
+          onPressed: () => _scrollToSection('features'),
+          child: Text(
+            'Features',
+            style: TextStyle(
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => _scrollToSection('apps'),
+          child: Text(
+            'Our Apps',
+            style: TextStyle(
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => _scrollToSection('pricing'),
+          child: Text(
+            'Pricing',
+            style: TextStyle(
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => _scrollToSection('faq'),
+          child: Text(
+            'FAQ',
+            style: TextStyle(
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => _scrollToSection('contact'),
+          child: Text(
+            'Contact',
+            style: TextStyle(
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeroSection(bool isDark) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 60),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isDark
+              ? [Colors.blueGrey.shade900, Colors.black]
+              : [Colors.blue.shade100, Colors.blue.shade400],
+        ),
+      ),
+      child: ResponsiveLayout(
+        mobile: _buildHeroMobile(isDark),
+        tablet: _buildHeroDesktop(isDark),
+        desktop: _buildHeroDesktop(isDark),
+      ),
+    );
+  }
+
+  Widget _buildHeroMobile(bool isDark) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          _websiteContent?.welcomeTitle ?? 'Welcome to Cupertino Studios',
+          style: AppTheme.headingLarge(isDark: isDark).copyWith(
+            color: Colors.white,
+            fontSize: 32,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 20),
+        Text(
+          _websiteContent?.welcomeMessage ??
+              'We build beautiful and powerful mobile apps.',
+          style: AppTheme.bodyLarge(isDark: isDark).copyWith(
+            color: Colors.white.withOpacity(0.9),
+            fontSize: 18,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 40),
+        ElevatedButton(
+          onPressed: _sendEmail,
+          style: AppTheme.primaryButtonStyle().copyWith(
+            padding: MaterialStateProperty.all<EdgeInsets>(
+              const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            ),
+          ),
+          child: const Text('Get Started', style: TextStyle(fontSize: 16)),
+        ),
+        const SizedBox(height: 40),
+        Container(
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 15,
+                spreadRadius: 5,
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: CachedNetworkImage(
+              imageUrl: _websiteContent?.heroImageUrl ?? '',
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Container(
+                color: Colors.grey.shade300,
+                child: const Icon(Icons.image, size: 80),
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeroDesktop(bool isDark) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 5,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                _websiteContent?.welcomeTitle ?? 'Welcome to Cupertino Studios',
+                style: AppTheme.headingLarge(isDark: isDark).copyWith(
+                  color: Colors.white,
+                  fontSize: 48,
+                ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 24),
               Text(
-                description,
-                style: const TextStyle(color: Colors.grey),
+                _websiteContent?.welcomeMessage ??
+                    'We build beautiful and powerful mobile apps.',
+                style: AppTheme.bodyLarge(isDark: isDark).copyWith(
+                  color: Colors.white.withOpacity(0.9),
+                  fontSize: 20,
+                ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                'Price: $price',
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: features
-                    .map((feature) => Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.check,
-                                  size: 14, color: Colors.green),
-                              const SizedBox(width: 5),
-                              Text(feature),
-                            ],
-                          ),
-                        ))
-                    .toList(),
+              const SizedBox(height: 40),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: _sendEmail,
+                    style: AppTheme.primaryButtonStyle().copyWith(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 16),
+                      ),
+                    ),
+                    child: const Text('Get Started',
+                        style: TextStyle(fontSize: 16)),
+                  ),
+                  const SizedBox(width: 16),
+                  OutlinedButton(
+                    onPressed: () => context.go('/support'),
+                    style:
+                        AppTheme.secondaryButtonStyle(isDark: isDark).copyWith(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 16),
+                      ),
+                      side: MaterialStateProperty.all<BorderSide>(
+                        BorderSide(color: Colors.white, width: 2),
+                      ),
+                    ),
+                    child: const Text('Learn More',
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class FAQSection extends StatelessWidget {
-  const FAQSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Card(
-            child: Text(
-              'Frequently Asked Questions',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        const SizedBox(width: 40),
+        Expanded(
+          flex: 4,
+          child: Container(
+            height: 350,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  blurRadius: 15,
+                  spreadRadius: 5,
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: CachedNetworkImage(
+                imageUrl: _websiteContent?.heroImageUrl ?? '',
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey.shade300,
+                  child: const Icon(Icons.image, size: 80),
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          const SizedBox(height: 20),
-          FAQItem(
-            question: 'What does "3-5 app integrations" mean?',
-            answer:
-                'In the context of our pricing packages, "3-5 app integrations" refers to the number of external services or functionalities that we can integrate into your mobile app. Examples include social media logins, payment gateways, maps, push notifications, or any other third-party APIs to enhance your app\'s capabilities.',
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFeaturesSection(bool isDark) {
+    final features = [
+      {
+        'icon': Icons.design_services,
+        'title': 'Custom Design',
+        'description':
+            'Beautiful, user-friendly interfaces tailored to your brand.',
+      },
+      {
+        'icon': Icons.devices,
+        'title': 'Cross-Platform',
+        'description':
+            'Apps that work seamlessly on iOS, Android, and the web.',
+      },
+      {
+        'icon': Icons.speed,
+        'title': 'Performance',
+        'description': 'Optimized for speed and responsiveness on all devices.',
+      },
+      {
+        'icon': Icons.security,
+        'title': 'Security',
+        'description': 'Built with the latest security best practices.',
+      },
+    ];
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      color: isDark
+          ? AppTheme.getThemeColor(context, Colors.white, Colors.black)
+          : Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Why Choose Us',
+            style: AppTheme.headingMedium(isDark: isDark),
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 20),
-          FAQItem(
-            question: 'How long does it take to develop a mobile app?',
-            answer:
-                'The timeline for mobile app development varies based on the complexity of the project, features required, and client feedback. A basic app may take a few weeks, while more complex apps can take several months. We work closely with clients to provide realistic timelines and milestones.',
+          const SizedBox(height: 16),
+          Text(
+            'We deliver exceptional app experiences with cutting-edge technology',
+            style: AppTheme.bodyMedium(isDark: isDark),
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 20),
-          FAQItem(
-            question: 'Do you offer post-launch support?',
-            answer:
-                'Yes, we offer post-launch support to address any issues, bugs, or additional features you may need. The level of support depends on the chosen pricing package. Our goal is to ensure your app functions smoothly and evolves according to your business needs.',
+          const SizedBox(height: 60),
+          ResponsiveLayout(
+            mobile: _buildFeaturesMobile(features, isDark),
+            tablet: _buildFeaturesDesktop(features, isDark),
+            desktop: _buildFeaturesDesktop(features, isDark),
           ),
         ],
       ),
     );
   }
-}
 
-class FAQItem extends StatelessWidget {
-  final String question;
-  final String answer;
+  Widget _buildFeaturesMobile(
+      List<Map<String, dynamic>> features, bool isDark) {
+    return Column(
+      children: features.map((feature) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: _buildFeatureCard(
+            icon: feature['icon'],
+            title: feature['title'],
+            description: feature['description'],
+            isDark: isDark,
+          ),
+        );
+      }).toList(),
+    );
+  }
 
-  FAQItem({super.key, required this.question, required this.answer});
+  Widget _buildFeaturesDesktop(
+      List<Map<String, dynamic>> features, bool isDark) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: features.map((feature) {
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: _buildFeatureCard(
+              icon: feature['icon'],
+              title: feature['title'],
+              description: feature['description'],
+              isDark: isDark,
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildFeatureCard({
+    required IconData icon,
+    required String title,
+    required String description,
+    required bool isDark,
+  }) {
     return Card(
-      child: ExpansionTile(
-        title: Text(
-          question,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      elevation: 0,
+      color: isDark
+          ? AppTheme.getThemeColor(
+              context, Colors.grey.shade100, Colors.grey.shade900)
+          : Colors.grey.shade100,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 48,
+              color: kPrimaryColor,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              title,
+              style: AppTheme.titleMedium(isDark: isDark),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              description,
+              style: AppTheme.bodyMedium(isDark: isDark),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildAppsShowcase(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      color: isDark
+          ? AppTheme.getThemeColor(
+              context, Colors.grey.shade100, Colors.black.withOpacity(0.3))
+          : Colors.grey.shade100,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(answer),
+          Text(
+            'Our Apps',
+            style: AppTheme.headingMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Discover our collection of innovative applications',
+            style: AppTheme.bodyMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 60),
+          _apps.isEmpty
+              ? Center(
+                  child: Text(
+                    'No apps available at the moment.',
+                    style: AppTheme.bodyMedium(isDark: isDark),
+                  ),
+                )
+              : ResponsiveLayout(
+                  mobile: _buildAppsMobile(isDark),
+                  tablet: _buildAppsDesktop(isDark),
+                  desktop: _buildAppsDesktop(isDark),
+                ),
+          const SizedBox(height: 40),
+          OutlinedButton(
+            onPressed: () {
+              context.go('/apps'); // Navigate to the all apps page
+            },
+            style: AppTheme.secondaryButtonStyle(isDark: isDark),
+            child: const Text('View All Apps'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAppsMobile(bool isDark) {
+    return Column(
+      children: _apps.take(3).map((app) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: AppCard(
+            appName: app.name,
+            platform: app.platforms.join(', '),
+            onPressed: () {
+              context.go('/app/${app.id}');
+            },
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildAppsDesktop(bool isDark) {
+    return Wrap(
+      spacing: 16,
+      runSpacing: 16,
+      alignment: WrapAlignment.center,
+      children: _apps.take(6).map((app) {
+        return SizedBox(
+          width: 300,
+          child: AppCard(
+            appName: app.name,
+            platform: app.platforms.join(', '),
+            onPressed: () {
+              context.go('/app/${app.id}');
+            },
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildPricingSection(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      color: isDark
+          ? AppTheme.getThemeColor(context, Colors.white, Colors.black)
+          : Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Our Pricing',
+            style: AppTheme.headingMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Transparent pricing plans for app development services',
+            style: AppTheme.bodyMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 60),
+          ResponsiveLayout(
+            mobile: _buildPricingMobile(isDark),
+            tablet: _buildPricingDesktop(isDark),
+            desktop: _buildPricingDesktop(isDark),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPricingMobile(bool isDark) {
+    final pricingPackages = _websiteContent?.pricingPackages ?? [];
+
+    return Column(
+      children: pricingPackages.map((package) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: PricingPackageCard(
+            title: package.title,
+            description: package.description,
+            price: package.price,
+            features: package.features,
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildPricingDesktop(bool isDark) {
+    final pricingPackages = _websiteContent?.pricingPackages ?? [];
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: pricingPackages.map((package) {
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: PricingPackageCard(
+              title: package.title,
+              description: package.description,
+              price: package.price,
+              features: package.features,
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildFAQSection(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      color: isDark
+          ? AppTheme.getThemeColor(
+              context, Colors.grey.shade100, Colors.black.withOpacity(0.3))
+          : Colors.grey.shade100,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Frequently Asked Questions',
+            style: AppTheme.headingMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Find answers to common questions about our services',
+            style: AppTheme.bodyMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 60),
+          Container(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Column(
+              children: (_websiteContent?.faqs ?? []).map((faq) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: FAQItemWidget(
+                    question: faq.question,
+                    answer: faq.answer,
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactSection(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      color: isDark
+          ? AppTheme.getThemeColor(context, Colors.white, Colors.black)
+          : Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Get in Touch',
+            style: AppTheme.headingMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Have a project in mind? Contact us today!',
+            style: AppTheme.bodyMedium(isDark: isDark),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 40),
+          Container(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: _sendEmail,
+                          icon: const Icon(Icons.email),
+                          label: const Text('Email Us'),
+                          style: AppTheme.primaryButtonStyle(),
+                        ),
+                        const SizedBox(width: 16),
+                        ElevatedButton.icon(
+                          onPressed: () => context.go('/support'),
+                          icon: const Icon(Icons.support_agent),
+                          label: const Text('Support'),
+                          style: AppTheme.primaryButtonStyle(),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Follow Us',
+                      style: AppTheme.titleMedium(isDark: isDark),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.facebook),
+                          onPressed: () async {
+                            final url = 'https://facebook.com/cupertinostudios';
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(Uri.parse(url),
+                                  mode: LaunchMode.externalApplication);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Could not open Facebook page')),
+                              );
+                            }
+                          },
+                          tooltip: 'Facebook',
+                          color: kPrimaryColor,
+                          iconSize: 32,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.social_distance),
+                          onPressed: () async {
+                            final url = 'https://twitter.com/cupertinostudios';
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(Uri.parse(url),
+                                  mode: LaunchMode.externalApplication);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Could not open Twitter page')),
+                              );
+                            }
+                          },
+                          tooltip: 'Twitter',
+                          color: kPrimaryColor,
+                          iconSize: 32,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.linked_camera),
+                          onPressed: () async {
+                            final url =
+                                'https://linkedin.com/company/cupertinostudios';
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(Uri.parse(url),
+                                  mode: LaunchMode.externalApplication);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Could not open LinkedIn page')),
+                              );
+                            }
+                          },
+                          tooltip: 'LinkedIn',
+                          color: kPrimaryColor,
+                          iconSize: 32,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.phone),
+                          onPressed: () async {
+                            const phone = '+2348173227654';
+                            final url = 'tel:$phone';
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(Uri.parse(url));
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Could not open phone dialer')),
+                              );
+                            }
+                          },
+                          tooltip: 'Phone',
+                          color: kPrimaryColor,
+                          iconSize: 32,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooter(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      color: isDark
+          ? AppTheme.getThemeColor(context, Colors.grey.shade800, Colors.black)
+          : Colors.grey.shade800,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/icons/logo-no-background.png',
+                height: 40,
+                color: Colors.white,
+              ),
+              const SizedBox(width: 16),
+              Text(
+                'Cupertino Studios',
+                style: AppTheme.titleLarge(isDark: true).copyWith(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          Text(
+            _websiteContent?.footerText ??
+                '© 2023 Cupertino Studios. All rights reserved.',
+            style: AppTheme.bodyMedium(isDark: true).copyWith(
+              color: Colors.white.withOpacity(0.7),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () async {
+                  final url = 'https://cupertinostudios.com/privacy-policy';
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(Uri.parse(url),
+                        mode: LaunchMode.externalApplication);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Could not open Privacy Policy page')),
+                    );
+                  }
+                },
+                child: Text(
+                  'Privacy Policy',
+                  style: TextStyle(color: Colors.white.withOpacity(0.7)),
+                ),
+              ),
+              TextButton(
+                onPressed: () async {
+                  final url = 'https://cupertinostudios.com/terms-of-service';
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(Uri.parse(url),
+                        mode: LaunchMode.externalApplication);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content:
+                              Text('Could not open Terms of Service page')),
+                    );
+                  }
+                },
+                child: Text(
+                  'Terms of Service',
+                  style: TextStyle(color: Colors.white.withOpacity(0.7)),
+                ),
+              ),
+            ],
           ),
         ],
       ),

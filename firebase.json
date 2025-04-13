@@ -1,0 +1,14 @@
+{
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "cupertino-studios-website",
+          "configurations": {
+            "web": "1:489847255447:web:6441908cc478c4272354d2"
+          }
+        }
+      }
+    }
+  }
+}
