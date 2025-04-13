@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["https://cupertinostudios.github.io"],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+  }
+]
