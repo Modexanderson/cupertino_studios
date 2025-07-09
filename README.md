@@ -1,19 +1,92 @@
-# cupertino_studios
+# Cupertino Studios
 
-Cupertino Studios WebApp.
+A modern, multi-platform Flutter web and mobile application designed to serve as the digital hub for Cupertino Studios.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+* Clean, scalable Flutter architecture
+* Full cross-platform support (iOS, Android, Web, Desktop)
+* Modular codebase for easy feature expansion
+* Admin dashboard integration
+* Interactive support and feedback pages
+* Dark mode / Theming support
+* Firebase integration
 
-A few resources to get you started if this is your first Flutter project:
+## 🏁 Getting Started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This is a Flutter project built with maintainability and growth in mind. To get started:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. Prerequisites
 
-<!-- PS C:\Users\Mordecai\Desktop\Programs\cupertino_studios> gsutil cors set cors.json gs://cupertino-studios-website.appspot.com
->> -->
+* [Flutter SDK](https://flutter.dev/docs/get-started/install) (>=3.0)
+* Dart enabled
+* Firebase project configured (optional but recommended)
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/Modexanderson/cupertino_studios.git
+cd cupertino_studios
+```
+
+### 3. Install Dependencies
+
+```bash
+flutter pub get
+```
+
+### 4. Run the App
+
+```bash
+flutter run -d chrome     # For web
+dart run lib/main.dart    # For CLI debugging (if supported)
+```
+
+## 🗂️ Project Structure
+
+```
+lib/
+├── config/             # App-wide constants and settings
+├── models/             # Data models
+├── screens/            # UI Screens (Home, Admin, Support, etc.)
+├── services/           # Firebase and API logic
+├── theme/              # App theming
+├── utils/              # Utility functions
+├── widgets/            # Reusable UI components
+├── main.dart           # Entry point
+```
+
+## 🔧 Configuration
+
+Firebase setup requires the `firebase_options.dart` file which is already provided. Make sure to link it with your Firebase project.
+
+You may also need to configure `cors.json` and `firebase.json` when deploying to web.
+
+## 🧪 Testing
+
+```bash
+flutter test
+```
+
+## 📦 Deployment
+
+For web deployment:
+
+```bash
+flutter build web
+```
+
+Deploy contents of `/build/web` to your preferred hosting provider.
+
+## 📚 Resources
+
+* [Flutter Documentation](https://flutter.dev/docs)
+* [Firebase Docs](https://firebase.google.com/docs)
+
+## 👨‍💻 Author
+
+**Modexanderson**
+
+---
+
+Feel free to contribute by submitting issues or pull requests!
